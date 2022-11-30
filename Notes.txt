@@ -1,0 +1,161 @@
+-- DATABASE --
+-- CREATE TABLE salary (
+--     salaryID int,
+--     salary bigint,
+--     PRIMARY KEY(salaryID)
+-- );
+-- CREATE TABLE role (
+--     roleID int,
+--     role varchar(255),
+--     accessLevel int,
+--     PRIMARY KEY(roleID)
+-- );
+-- CREATE TABLE admin (
+--     adminID varchar(10) NOT NULL,
+--     roleID int NOT NULL,
+--     f_Name varchar(255) NOT NULL,
+--     l_Name varchar(255) NOT NULL,
+--     email varchar(255) NOT NULL,
+--     phone varchar(255) NOT NULL,
+--     password varchar(255) NOT NULL,
+--     DOB date NOT NULL,
+--     admissionStatus varchar(255) DEFAULT "Pending",
+--     salaryID int NOT NULL,
+--     PRIMARY KEY(adminID),
+--     FOREIGN KEY(salaryID) REFERENCES salary(salaryID),
+--     FOREIGN KEY(roleID) REFERENCES role(roleID)
+-- );
+-- CREATE TABLE supervisor (
+--     superID varchar(10) NOT NULL,
+--     roleID int NOT NULL,
+--     f_Name varchar(255) NOT NULL,
+--     l_Name varchar(255) NOT NULL,
+--     email varchar(255) NOT NULL,
+--     phone varchar(255) NOT NULL,
+--     password varchar(255) NOT NULL,
+--     DOB date NOT NULL,
+--     admissionStatus varchar(255) DEFAULT "Pending",
+--     salaryID int NOT NULL,
+--     PRIMARY KEY(superID),
+--     FOREIGN KEY(salaryID) REFERENCES salary(salaryID),
+--     FOREIGN KEY(roleID) REFERENCES role(roleID)
+-- );
+-- CREATE TABLE doctor (
+--     doctorID varchar(10) NOT NULL,
+--     roleID int NOT NULL,
+--     f_Name varchar(255) NOT NULL,
+--     l_Name varchar(255) NOT NULL,
+--     email varchar(255) NOT NULL,
+--     phone varchar(255) NOT NULL,
+--     password varchar(255) NOT NULL,
+--     DOB date NOT NULL,
+--     admissionStatus varchar(255) DEFAULT "Pending",
+--     salaryID int NOT NULL,
+--     PRIMARY KEY(doctorID),
+--     FOREIGN KEY(salaryID) REFERENCES salary(salaryID),
+--     FOREIGN KEY(roleID) REFERENCES role(roleID)
+-- );
+-- CREATE TABLE caregiver (
+--     caregiverID varchar(10) NOT NULL,
+--     roleID int NOT NULL,
+--     f_Name varchar(255) NOT NULL,
+--     l_Name varchar(255) NOT NULL,
+--     email varchar(255) NOT NULL,
+--     phone varchar(255) NOT NULL,
+--     password varchar(255) NOT NULL,
+--     DOB date NOT NULL,
+--     admissionStatus varchar(255) DEFAULT "Pending",
+--     salaryID int NOT NULL,
+--     PRIMARY KEY(caregiverID),
+--     FOREIGN KEY(salaryID) REFERENCES salary(salaryID),
+--     FOREIGN KEY(roleID) REFERENCES role(roleID)
+-- );
+
+--  
+-- CREATE TABLE patient (
+--     patientID varchar(10) NOT NULL,
+--     roleID int NOT NULL,
+--     f_Name varchar(255) NOT NULL,
+--     l_Name varchar(255) NOT NULL,
+--     email varchar(255) NOT NULL,
+--     phone varchar(255) NOT NULL,
+--     password varchar(255) NOT NULL,
+--     DOB date NOT NULL,
+--     admissionStatus varchar(255) DEFAULT "Pending",
+--     PRIMARY KEY(patientID),
+--     FOREIGN KEY(roleID) REFERENCES role(roleID)
+-- );
+-- CREATE TABLE patientFM (
+--     patient_FM_ID varchar(10) NOT NULL,
+--     roleID int NOT NULL,
+--     f_Name varchar(255) NOT NULL,
+--     l_Name varchar(255) NOT NULL,
+--     email varchar(255) NOT NULL,
+--     phone varchar(255) NOT NULL,
+--     password varchar(255) NOT NULL,
+--     DOB date NOT NULL,
+--     admissionStatus varchar(255) DEFAULT "Pending",
+--     PRIMARY KEY(patient_FM_ID),
+--     FOREIGN KEY(roleID) REFERENCES role(roleID)
+-- );
+-- CREATE TABLE payment (
+--     paymentID varchar(10),
+--     patientID varchar(10),
+--     payment bigint,
+--     date date NOT NULL,
+--     PRIMARY KEY(paymentID),
+--     FOREIGN KEY(patientID) REFERENCES patient(patientID)
+-- );
+-- CREATE TABLE patientCheckList (
+--     checkListID varchar(10) NOT NULL,
+--     patientID varchar(10) NOT NULL,
+--     doctorID varchar(10) NOT NULL,
+--     caregiverID varchar(10) NOT NULL,
+--     doctorAppoint boolean NOT NULL,
+--     morningMeds boolean NOT NULL,
+--     afternoonMeds boolean NOT NULL,
+--     nightMeds boolean NOT NULL,
+--     breakfast boolean NOT NULL,
+--     lunch boolean NOT NULL,
+--     dinner boolean NOT NULL,
+--     PRIMARY KEY(checkListID),
+--     FOREIGN KEY(patientID) REFERENCES patient(patientID),
+--     FOREIGN KEY(doctorID) REFERENCES doctor(doctorID),
+--     FOREIGN KEY(caregiverID) REFERENCES caregiver(caregiverID)
+-- );
+-- CREATE TABLE prescription (
+--     prescriptionID varchar(10) NOT NULL,
+--     patientID varchar(10) NOT NULL,
+--     date date NOT NULL,
+--     comment varchar(1000),
+--     morningMed varchar(255),
+--     afternoonMed varchar(255),
+--     nightMed varchar(255),
+--     PRIMARY KEY(prescriptionID),
+--     FOREIGN KEY(patientID) REFERENCES patient(patientID)
+-- );
+-- CREATE TABLE doctorAppointments (
+--     appointmentID varchar(10) NOT NULL,
+--     patientID varchar(10) NOT NULL,
+--     doctorID varchar(10) NOT NULL,
+--     appointmentDate date NOT NULL,
+--     PRIMARY KEY(appointmentID),
+--     FOREIGN KEY(patientID) REFERENCES patient(patientID),
+--     FOREIGN KEY(doctorID) REFERENCES doctor(doctorID)
+-- );
+-- CREATE TABLE roster (
+--     date date NOT NULL,
+--     superID varchar(10),
+--     doctorID varchar(10),
+--     caregiver_1_ID varchar(10),
+--     caregiver_2_ID varchar(10),
+--     caregiver_3_ID varchar(10),
+--     caregiver_4_ID varchar(10),
+--     PRIMARY KEY(date),
+--     FOREIGN KEY(superID) REFERENCES supervisor(superID),
+--     FOREIGN KEY(doctorID) REFERENCES doctor(doctorID),
+--     FOREIGN KEY(caregiver_1_ID) REFERENCES caregiver(caregiverID),
+--     FOREIGN KEY(caregiver_2_ID) REFERENCES caregiver(caregiverID),
+--     FOREIGN KEY(caregiver_3_ID) REFERENCES caregiver(caregiverID),
+--     FOREIGN KEY(caregiver_4_ID) REFERENCES caregiver(caregiverID)
+-- );
