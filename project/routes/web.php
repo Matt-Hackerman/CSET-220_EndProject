@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DoctorAppointmentAPI;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,7 @@ Route::get('/register', function () {
     return view('register');
 });
 
-Route::get('/doctorappointment', function () {
-    return view('doctorappointment');
-});
+Route::get('/doctorappointment', [DoctorAppointmentAPI::class, 'index']);
 
 Route::get('/newroster', function () {
     return view('newroster');

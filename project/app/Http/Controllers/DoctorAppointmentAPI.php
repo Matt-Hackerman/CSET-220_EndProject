@@ -18,8 +18,8 @@ class DoctorAppointmentAPI extends Controller
     public function index()
     {
         
-        $_SESSION['patients'] = DB::select('select patientID, concat(f_Name, " ", l_Name) from patient;');
-        $_SESSION['doctors'] = DB::select('select doctorID, concat(f_Name, " ", l_Name) from doctor;');
+        $_SESSION['patients'] = DB::select('select patientID, concat(f_Name, " ", l_Name) as name from patient;');
+        $_SESSION['doctors'] = DB::select('select doctorID, concat(f_Name, " ", l_Name) as name from doctor;');
 
         return view('doctorappointment');
     }
