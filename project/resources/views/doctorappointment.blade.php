@@ -37,25 +37,34 @@ input{
     <h1>
     Doctor's Appointment
 </h1>
-<div class="parent">
+
+<form action="/api/doctorappointment" method="POST">
+  @csrf
+  <input name="patientID" type="text" placeholder="PatientID">
+  <input name="appointmentDate" type="date" placeholder="appointmentDate">
+  <input name="doctorID" type="text" placeholder="DoctorID">
+  <input type="submit">
+</form>
+
+{{-- <div class="parent">
   <div class="child">
-    <div class=button2>Patient ID</div> <input></input>
+    <div class=button2>Patient ID</div> <input name="patientID" type="text">
   </div>
   <div class="child">
-  <div class=button2>Patient Name</div> <input readonly></input>
+  <div class=button2>Patient Name</div> <input readonly>
   </div>
 </div>
 <p><br></p>
 <p><br></p>
 <div class="parent" style=display:inline-block>
   <div class="child">
-  <div class=button2>Date</div> <input></input>
+  <div class=button2>Date</div> <input name="appointmentDate" type="date">
   </div>
 </div>
 <p><br></p>
 <div class="parent" style=display:inline-block>
   <div class="child">
-  <div class=button2>Doctor</div> <input></input>
+  <div class=button2>Doctor</div> <input name="doctorID" type="text">
   </div>
 </div>
 <p><br></p>
@@ -66,6 +75,6 @@ Ok
 <div class="button">
 Cancel
 </div>
-</div>
+</div> --}}
 </body>
 </html>
