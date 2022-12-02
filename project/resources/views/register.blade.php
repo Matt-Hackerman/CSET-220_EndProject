@@ -1,3 +1,6 @@
+<?php
+use App\Http\Controllers\registercontroller;
+?>
 <html>
     <style>
         text{
@@ -92,7 +95,7 @@ input{
   <div class="child">
   <div class=button2>Password</div> <input></input>
   </div>
-  <div class="button">
+  <div class="button" onclick="registration()">
 Ok
 </div>
 <div class="button">
