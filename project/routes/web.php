@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\http\Controllers\HomeController;
+use App\http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +22,4 @@ Route::get('/login', function() {
     return view('login');
 });
 
-Route::get('/home', [HomeController::class, 'dates']);
+Route::get('/home', [UserController::class, 'dates']);
