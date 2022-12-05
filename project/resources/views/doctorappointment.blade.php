@@ -56,7 +56,7 @@
     <div class="parent">
       <div class="child">
         <div class=button2>Patient ID</div>
-        <input name="patientID" id="patID" type="text">
+        <input name="patientID" id="patID" type="text" required>
       </div>  
       <div class="child">
         <div class=button2>Patient Name</div>
@@ -68,14 +68,14 @@
     <div class="parent" style=display:inline-block>
       <div class="child">
         <div class=button2>Date</div>
-        <input name="appointmentDate" type="date">
+        <input value="<?php echo date('Y-m-d') ?>" name="appointmentDate" type="date" required>
       </div>
     </div>
     <br>
     <div class="parent" style=display:inline-block>
       <div class="child">
         <div class=button2>Doctor</div>
-        <select name="doctorID" id="">
+        <select name="doctorID" id="" required>
           <?php for($i=0;$i<count($_SESSION['doctors']);$i++){?>
             <option value="<?php echo $_SESSION['doctors'][$i]->doctorID;?>"><?php echo $_SESSION['doctors'][$i]->name;?></option>
           <?php } ?>
