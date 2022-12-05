@@ -1,7 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+use App\http\Controllers\UserController;
+
 use App\Http\Controllers\DoctorAppointmentAPI;
+
+use App\Http\Controllers\registercontrollerAPI;
+
+use App\Http\Controllers\newroster;
+use App\Http\Controllers\PaymentAPI;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +28,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function () {
+
+Route::get('/login', function() {
     return view('login');
 });
+
+Route::get('/home', [UserController::class, 'dates']);
+
 Route::get('/roster', function () {
     return view('roster');
 });
@@ -34,11 +48,11 @@ Route::get('/register', function () {
 
 Route::get('/doctorappointment', [DoctorAppointmentAPI::class, 'index']);
 
-Route::get('/newroster', function () {
-    return view('newroster');
-});
 
-Route::get('/payment', function () {
-    return view('payment');
-});
+Route::get('/registercontroller', [registercontrollerAPI::class, 'index']);
 
+
+
+Route::get('/newroster', [newroster::class, 'index']);
+
+Route::get('/payment', [PaymentAPI::class, 'index']);

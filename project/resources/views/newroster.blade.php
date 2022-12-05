@@ -31,12 +31,21 @@
     input{
         height:32px;  
     }
+    .submit {
+      background-color: #2E8B57;
+      height: 50px;
+      width: 100px;
+      cursor:pointer;
+      color:white;
+      border-style: none;
+    }
   </style>
   <body>
     <h1>New Roster</h1>
+    <form action="/api/newroster" method="POST">
     <div class="parent">
       <div class="child">
-        <div class=button2>Date</div> <input>
+        <div class=button2>Date</div> <input min="<?php echo date('Y-m-d') ?>" value="<?php echo date('Y-m-d') ?>" name="date" type="date" required>
       </div>
     </div>
     <br>
@@ -44,45 +53,70 @@
     <div class="parent" style=display:inline-block>
       <div class="child">
         <div class=button2>Supervisor</div>
-        <select></select>
+        <select name="superID" required>
+          <?php for($i=0;$i<count($_SESSION['super']);$i++){?>
+            <option value="<?php echo $_SESSION['super'][$i]->superID;?>"><?php echo $_SESSION['super'][$i]->name;?></option>
+          <?php } ?>
+        </select>
       </div>
     </div>
     <br>
     <div class="parent" style=display:inline-block>
       <div class="child">
         <div class=button2>Doctor</div>
-        <select></select>
+        <select name="doctorID" required>
+          <?php for($i=0;$i<count($_SESSION['doctor']);$i++){?>
+            <option value="<?php echo $_SESSION['doctor'][$i]->doctorID;?>"><?php echo $_SESSION['doctor'][$i]->name;?></option>
+          <?php } ?>
+        </select>
       </div>
     </div>
     <br>
     <div class="parent" style=display:inline-block>
       <div class="child">
         <div class=button2>Caregiver 1</div>
-        <select></select>
+        <select name="caregiver_1_ID" required>
+          <?php for($i=0;$i<count($_SESSION['caregiver']);$i++){?>
+            <option value="<?php echo $_SESSION['caregiver'][$i]->caregiverID;?>"><?php echo $_SESSION['caregiver'][$i]->name;?></option>
+          <?php } ?>
+        </select>
       </div>
     </div>
     <br>
     <div class="parent" style=display:inline-block>
       <div class="child">
         <div class=button2>Caregiver 2</div>
-        <select></select>
+        <select name="caregiver_2_ID" required>
+          <?php for($i=0;$i<count($_SESSION['caregiver']);$i++){?>
+            <option value="<?php echo $_SESSION['caregiver'][$i]->caregiverID;?>"><?php echo $_SESSION['caregiver'][$i]->name;?></option>
+          <?php } ?>
+        </select>
       </div>
     </div>
     <br>
     <div class="parent" style=display:inline-block>
       <div class="child">
       <div class=button2>Caregiver 3</div>
-      <select></select>
+      <select name="caregiver_3_ID" required>
+        <?php for($i=0;$i<count($_SESSION['caregiver']);$i++){?>
+          <option value="<?php echo $_SESSION['caregiver'][$i]->caregiverID;?>"><?php echo $_SESSION['caregiver'][$i]->name;?></option>
+        <?php } ?>
+      </select>
     </div>
     </div>
     <br>
     <div class="parent" style=display:inline-block>
       <div class="child">
         <div class=button2>Caregiver 4</div>
-        <select></select>
+        <select name="caregiver_4_ID" required>
+          <?php for($i=0;$i<count($_SESSION['caregiver']);$i++){?>
+            <option value="<?php echo $_SESSION['caregiver'][$i]->caregiverID;?>"><?php echo $_SESSION['caregiver'][$i]->name;?></option>
+          <?php } ?>
+        </select>
       </div>
-      <div class="button">Ok</div>
+      <input type="submit" value="Ok" class="submit">
       <div class="button">Cancel</div>
     </div>
+    </form>
   </body>
 </html>
