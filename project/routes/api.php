@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+use App\http\Controllers\UserController;
+
 use App\Http\Controllers\DoctorAppointmentAPI;
 
 use App\Http\Controllers\registercontrollerAPI;
@@ -21,6 +24,14 @@ use App\Http\Controllers\PaymentAPI;
 |
 */
 
+
+
+Route::post('/login', [UserController::class, 'userLogin']);
+
+Route::post('/logout', [UserController::class, 'userLogout']);
+
+Route::post('/previous_day', [UserController::class, 'patientCheckList']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -32,4 +43,5 @@ Route::resource('registercontroller', registercontrollerAPI::class);
 
 Route::resource('payment', PaymentAPI::class);
 Route::resource('newroster', newroster::class);
+
 

@@ -1,36 +1,37 @@
 <html>
     <head>
-        <marquee direction="right" 
-        behavior="alternate"
-        scrollamount="15" 
-        class="blink">
-        <h1>Please Login</h1>
-    </marquee>
+      <marquee direction="right" 
+          behavior="alternate"
+          scrollamount="15" 
+          class="blink">
+          <h1>Please Login</h1>
+          <title>Login</title>
+      </marquee>
     </head>
-<div class="whole">
-<div class="email">
-    <label for="email">Email</label>
-<form>
-    <input type="text">
-</form>
-</div>
-</div> 
-<div class="password">
-    <label for="password">Password</label>
-<form>
-     <input type="text">
-</form>
+    <body>
+        <form action="/api/login" method="POST">
+            @csrf
+            <div class="whole">
+                <div class="email">
+                    <label for="email">Email</label>
+                    <input class="" type="email" name="email" placeholder="Email: ">
+                </div>
+            </div> 
+            <div class="password">
+                <label for="password">Password</label>
+                <input class="" type="password" name="password" placeholder="Password: ">
 
-<div class="ok">
-    <a href="">
-        <button>Ok</button>
-    </a>
-</div>
-<div class="cancel">
-    <a href="Homepage.html">
-        <button>Cancel</button>
-    </a>
-</div>
+                <div class="ok">
+                    <button class="" type="submit" name="login">Login</button> 
+                </div>
+                <div class="cancel">
+                    <a href="Homepage.html">
+                        <button>Cancel</button>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </body>
 </html>
 
 <style>
