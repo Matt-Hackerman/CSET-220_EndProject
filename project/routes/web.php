@@ -2,8 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DoctorAppointmentAPI;
+
+use App\Http\Controllers\registercontrollerAPI;
+
 use App\Http\Controllers\newroster;
 use App\Http\Controllers\PaymentAPI;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +40,13 @@ Route::get('/register', function () {
 
 Route::get('/doctorappointment', [DoctorAppointmentAPI::class, 'index']);
 
+
+Route::get('/registercontroller', [registercontrollerAPI::class, 'index']);
+
+
+
 Route::get('/newroster', [newroster::class, 'index']);
 
 Route::get('/payment', [PaymentAPI::class, 'index']);
+
 
