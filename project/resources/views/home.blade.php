@@ -14,18 +14,18 @@
         <h1><?php echo $_SESSION["currentUser"]; ?></h1>
         <h1><?php echo $_SESSION["userID"]; ?></h1>
 
-        <form action="/api/home" method="POST">
-            Date: <select name="date">
+        <form id="checkList" action="/api/previous_day" method="POST">
+            Date: <select id="allDates" name="date">
                 <option value="<?php date("Y-m-d") ?>"><?php echo date("Y-m-d"); ?></option>
                 <?php for($i = 0; $i < count($_SESSION["dates"]); $i++) { ?>
-                    <option value="<?php $_SESSION["dates"][$i]->date;?>"><?php print_r($_SESSION["dates"][$i]->date); ?></option>
+                    <option value="<?php echo $_SESSION["dates"][$i]->date;?>"><?php print_r($_SESSION["dates"][$i]->date); ?></option>
                 <?php
                 }
                 ?>
             </select>
         </form>
 
-        <div class="checklistTable">
+        <div class="checkListTable">
             <table>
                 <tr>
                     <th>Doctor</th>

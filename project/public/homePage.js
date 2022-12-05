@@ -19,3 +19,7 @@ $(".check").each(function() {
         $(this).attr("id", "symbol");
     }
 });
+
+$('#allDates').on('change', function() {
+    $("#checkList").submit();
+});

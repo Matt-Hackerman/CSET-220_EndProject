@@ -19,3 +19,5 @@ use App\http\Controllers\UserController;
 Route::post('/login', [UserController::class, 'userLogin']);
 
 Route::post('/logout', [UserController::class, 'userLogout']);
+
+Route::post('/previous_day', [UserController::class, 'patientCheckList']);

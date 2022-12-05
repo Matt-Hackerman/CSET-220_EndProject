@@ -91,8 +91,23 @@ class UserController extends Controller
     }
 
     public function patientCheckList(Request $request) {
-        $fields = $request->validate([
-            'date' => 'required|string'
-        ]);
+        $newDay = $request->input('date');
+
+        $prevCheckList = DB::select("
+            SELECT CONCAT(doctor.f_Name, \" \", doctor.l_Name) as doctor, patientchecklist.doctorAppoint, 
+            CONCAT(caregiver.f_Name, \" \", caregiver.l_Name) as caregiver, patientchecklist.morningMeds, 
+            patientchecklist.afternoonMeds, patientchecklist.nightMeds, patientchecklist.breakfast, 
+            patientchecklist.lunch, patientchecklist.dinner 
+            FROM patientchecklist 
+            JOIN patient ON patient.patientID = patientchecklist.patientID 
+            JOIN doctor ON patientchecklist.doctorID = doctor.doctorID 
+            JOIN caregiver ON patientchecklist.caregiverID = caregiver.caregiverID 
+            WHERE patientchecklist.patientID = \"" . $_SESSION["userID"] . "\"" . " 
+            AND patientchecklist.date = \"" . $newDay . "\""
+        );
+
+         $_SESSION["list"] = $prevCheckList;
+
+        return view('home');
     }
 }
