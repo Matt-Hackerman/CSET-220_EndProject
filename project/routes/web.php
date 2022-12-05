@@ -18,6 +18,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/login', function () {
+    return view('login');
+});
+Route::get('/roster', function () {
+    return view('roster');
+});
+Route::get('/role', function () {
+    return view('role');
+});
+
 Route::get('/register', function () {
     return view('register');
 });
@@ -31,3 +41,4 @@ Route::get('/newroster', function () {
 Route::get('/payment', function () {
     return view('payment');
 });
+
