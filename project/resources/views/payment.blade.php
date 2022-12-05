@@ -1,8 +1,8 @@
 <html>
 <style>
-        text{
-            font-family:Calibri;
-        }
+text{
+    font-family:Calibri;
+}
 .parent {
     width: 100%;
 }
