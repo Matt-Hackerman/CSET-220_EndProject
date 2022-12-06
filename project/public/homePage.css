@@ -3,3 +3,13 @@
     border-collapse: collapse;
     padding: 5px;
 }
+
+.hidden {
+    display: none;
+}
+
+.homePageIframe {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}

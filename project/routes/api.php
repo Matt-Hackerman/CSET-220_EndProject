@@ -32,16 +32,12 @@ Route::post('/logout', [UserController::class, 'userLogout']);
 
 Route::post('/previous_day', [UserController::class, 'patientCheckList']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::resource('doctorappointment', DoctorAppointmentAPI::class);
-
 
 Route::resource('registercontroller', registercontrollerAPI::class);
 
 Route::resource('payment', PaymentAPI::class);
+
 Route::resource('newroster', newroster::class);
 
 

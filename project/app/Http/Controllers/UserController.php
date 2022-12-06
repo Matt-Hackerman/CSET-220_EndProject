@@ -25,10 +25,11 @@ class UserController extends Controller
 
         foreach($users as $user) {
             if($user->email == $fields['email'] && $user->password == $fields['password'] && $user->admissionStatus == "Approved") {
-                $access = DB::select("select accessLevel from role where roleID = " . $user->roleID);
+                $access = DB::select("select accessLevel, role from role where roleID = " . $user->roleID);
                 $_SESSION['userID'] = $user->userID;
                 $_SESSION["currentUser"] = $user->name;
                 $_SESSION["accessLevel"] = $access[0]->accessLevel;
+                $_SESSION["role"] = $access[0]->role;
                 $this->dates();
                 return view('home');
             }
@@ -47,46 +48,50 @@ class UserController extends Controller
         );
 
         $_SESSION["dates"] = $dates;
+        $al = $_SESSION['accessLevel'];
 
-        $checkList = DB::select("
-            SELECT CONCAT(doctor.f_Name, \" \", doctor.l_Name) as doctor, patientchecklist.doctorAppoint, 
-            CONCAT(caregiver.f_Name, \" \", caregiver.l_Name) as caregiver, patientchecklist.morningMeds, 
-            patientchecklist.afternoonMeds, patientchecklist.nightMeds, patientchecklist.breakfast, 
-            patientchecklist.lunch, patientchecklist.dinner 
-            FROM patientchecklist 
-            JOIN patient ON patient.patientID = patientchecklist.patientID 
-            JOIN doctor ON patientchecklist.doctorID = doctor.doctorID 
-            JOIN caregiver ON patientchecklist.caregiverID = caregiver.caregiverID 
-            WHERE patientchecklist.patientID = \"" . $_SESSION["userID"] . "\"" . " 
-            AND patientchecklist.date = \"" . date("Y-m-d") . "\""
-        );
+        if($al == 2) {
+            $checkList = DB::select("
+                SELECT CONCAT(doctor.f_Name, \" \", doctor.l_Name) as doctor, patientchecklist.doctorAppoint, 
+                CONCAT(caregiver.f_Name, \" \", caregiver.l_Name) as caregiver, patientchecklist.morningMeds, 
+                patientchecklist.afternoonMeds, patientchecklist.nightMeds, patientchecklist.breakfast, 
+                patientchecklist.lunch, patientchecklist.dinner 
+                FROM patientchecklist 
+                JOIN patient ON patient.patientID = patientchecklist.patientID 
+                JOIN doctor ON patientchecklist.doctorID = doctor.doctorID 
+                JOIN caregiver ON patientchecklist.caregiverID = caregiver.caregiverID 
+                WHERE patientchecklist.patientID = \"" . $_SESSION["userID"] . "\"" . " 
+                AND patientchecklist.date = \"" . date("Y-m-d") . "\""
+            );
 
-        if ($checkList === []) {
-            $CLID = "CL" . random_int(100000, 999999);
-            $userID = $_SESSION["userID"];
-            $date = date("Y-m-d");
-            $emptyList = DB::insert("
-                INSERT INTO patientchecklist
-                VALUES (
-                    \"$CLID\",
-                    \"$userID\",
-                    \"DR000000\",
-                    \"CG000000\",
-                    \"$date\",
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0
-                )
-            ");
+            if ($checkList === []) {
+                $CLID = "CL" . random_int(100000, 999999);
+                $userID = $_SESSION["userID"];
+                $date = date("Y-m-d");
+                $emptyList = DB::insert("
+                    INSERT INTO patientchecklist
+                    VALUES (
+                        \"$CLID\",
+                        \"$userID\",
+                        \"DR000000\",
+                        \"CG000000\",
+                        \"$date\",
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    )
+                ");
 
-            $_SESSION["list"] = $emptyList;
-        }
-        else {
-            $_SESSION["list"] = $checkList;
+                $_SESSION["list"] = $emptyList;
+            }
+            else {
+                $_SESSION["list"] = $checkList;
+            }
+            return view('patienthome');
         }
     }
 
@@ -108,6 +113,6 @@ class UserController extends Controller
 
          $_SESSION["list"] = $prevCheckList;
 
-        return view('home');
+        return view('patienthome');
     }
 }
