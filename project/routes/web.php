@@ -10,8 +10,7 @@ use App\Http\Controllers\registercontrollerAPI;
 
 use App\Http\Controllers\newroster;
 use App\Http\Controllers\PaymentAPI;
-
-
+use App\Http\Controllers\RosterAPI;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,9 +34,8 @@ Route::get('/login', function() {
 
 Route::get('/home', [UserController::class, 'dates']);
 
-Route::get('/roster', function () {
-    return view('roster');
-});
+Route::get('/roster', [RosterAPI::class, 'index']);
+
 Route::get('/role', function () {
     return view('role');
 });
