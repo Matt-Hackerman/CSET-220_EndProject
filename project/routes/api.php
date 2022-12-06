@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\additionalPatientAPI;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('doctorappointment', DoctorAppointmentAPI::class);
+Route::resource('additionalPatient', additionalPatientAPI::class);
 
 
 Route::resource('registercontroller', registercontrollerAPI::class);
