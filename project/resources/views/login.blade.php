@@ -13,6 +13,7 @@
             @csrf
             <label for="email">Email</label>
             <input class="" type="email" name="email" placeholder="Email: ">
+            <br>
             <label for="password">Password</label>
             <input class="" type="password" name="password" placeholder="Password: ">
             <div class="click">
