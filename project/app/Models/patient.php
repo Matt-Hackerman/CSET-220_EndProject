@@ -22,5 +22,7 @@ class patient extends Model
         'familyCode',
         'emergencyContact',
         'contactRelationship',
+        'groups',
+        'admissionDate',
     ];
 }

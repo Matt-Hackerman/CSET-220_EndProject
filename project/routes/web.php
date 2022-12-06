@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\additionalPatientAPI;
 use Illuminate\Support\Facades\Route;
 
 use App\http\Controllers\UserController;
@@ -33,6 +34,8 @@ Route::get('/login', function() {
 });
 
 Route::get('/home', [UserController::class, 'dates']);
+
+Route::get('/additionalPatient', [additionalPatientAPI::class, 'index']);
 
 Route::get('/roster', [RosterAPI::class, 'index']);
 
