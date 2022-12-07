@@ -1,8 +1,12 @@
 <html>
-<div class="grid-container">
-    <h2>Role</h2>
-    <h2 class="AL">Access Level</h2>
-</div>
+<body>
+    <table>
+        <tr>
+            <th>Role</th>
+            <th>Access Level</th>
+        </tr>
+    </table>
+
 <div class="grid1">
     <label for="New_role">New Role</label>
     <form>
@@ -27,23 +31,9 @@
     </a>
 </div>
 </div>
+</body>
 </html> 
 <style>
-   
-    .grid-container {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 10px;
-    }
-    .grid-container>* {
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        text-align: center;
-        border: 1px solid white;
-        padding: 5px;
-        background-color:lightgrey;
-    }
     .grid{
         display: grid;
         grid-template-columns: repeat(6, 1fr);
@@ -96,4 +86,16 @@
     .cancel{
         margin-left: 30px;
     }
+    table{
+        border: 1px solid ;
+        background-color: lightgray;
+        width: 500px;
+        height: 50px;
+        margin-left: auto;
+        margin-right: auto; 
+        }
+   th{
+    height: 50px;
+    width: 25px;
+   }
 </style>
