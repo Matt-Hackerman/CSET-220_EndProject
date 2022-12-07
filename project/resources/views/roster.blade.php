@@ -36,10 +36,10 @@
 }
     </style>
     <body>
-    <form class="grid1">
+    <div class="grid1">
     <h2>Date</h2>
      <input type="date" name="date" value="<?php echo date('Y-m-d');?>" readonly>
-    </form>
+    </div>
     <table>
         
         <tr>
