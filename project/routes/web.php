@@ -47,6 +47,10 @@ Route::get('/register', function () {
     return view('register');
 });
 
+Route::get('/emp_search', function () {
+    return view('Employee_search');
+});
+
 Route::get('/doctorappointment', [DoctorAppointmentAPI::class, 'index']);
 
 
@@ -57,3 +61,4 @@ Route::get('/registercontroller', [registercontrollerAPI::class, 'index']);
 Route::get('/newroster', [newroster::class, 'index']);
 
 Route::get('/payment', [PaymentAPI::class, 'index']);
+
