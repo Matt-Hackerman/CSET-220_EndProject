@@ -32,6 +32,8 @@ Route::post('/logout', [UserController::class, 'userLogout']);
 
 Route::post('/previous_day', [UserController::class, 'patientCheckList']);
 
+Route::post('/updateCheckList', [UserController::class, 'updateCheckList']);
+
 Route::resource('doctorappointment', DoctorAppointmentAPI::class);
 
 Route::resource('registercontroller', registercontrollerAPI::class);

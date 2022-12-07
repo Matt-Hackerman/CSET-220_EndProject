@@ -7,7 +7,7 @@
     </head>
 
     <body> 
-        <?php if($_SESSION['accessLevel'] == 2) { ?>
+        <?php if($_SESSION["accessLevel"] == 2) { ?>
             <form id="checkList" action="/api/previous_day" method="POST">
                 Date: <select id="allDates" name="date">
                     <option value="<?php date("Y-m-d") ?>"><?php echo date("Y-m-d"); ?></option>
@@ -32,6 +32,19 @@
                         <th>Lunch</th>
                         <th>Dinner</th>
                     </tr>
+                    <?php if (count($_SESSION["list"]) == 0) { ?>
+                        <tr>
+                            <td>None</td>
+                            <td>None</td>
+                            <td>None</td>
+                            <td>None</td>
+                            <td>None</td>
+                            <td>None</td>
+                            <td>None</td>
+                            <td>None</td>
+                            <td>None</td>
+                        </tr>
+                    <?php } else { ?>
                     <tr>
                         <td><?php echo $_SESSION["list"][0]->doctor ?></td>
                         <td id="check" class="check"><?php echo $_SESSION["list"][0]->doctorAppoint ?></td>
@@ -43,6 +56,7 @@
                         <td id="yesNo" class="symbol"><?php echo $_SESSION["list"][0]->lunch ?></td>
                         <td id="yesNo" class="symbol"><?php echo $_SESSION["list"][0]->dinner ?></td>
                     </tr>
+                    <?php } ?>
                 </table>
             </div>
         <?php } ?>

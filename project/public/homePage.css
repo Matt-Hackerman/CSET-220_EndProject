@@ -1,7 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .checkListTable table, tr, th, td {
     border:2px solid black;
     border-collapse: collapse;
     padding: 5px;
+}
+
+.checkListTable table {
+    margin: 0 0 30px 0;
 }
 
 .hidden {
@@ -10,6 +20,8 @@
 
 .homePageIframe {
     width: 100%;
+    min-height: 70%;
     height: auto;
     margin: 0 auto;
+    padding: 10px;
 }

@@ -64,33 +64,8 @@ class UserController extends Controller
                 AND patientchecklist.date = \"" . date("Y-m-d") . "\""
             );
 
-            if ($checkList === []) {
-                $CLID = "CL" . random_int(100000, 999999);
-                $userID = $_SESSION["userID"];
-                $date = date("Y-m-d");
-                $emptyList = DB::insert("
-                    INSERT INTO patientchecklist
-                    VALUES (
-                        \"$CLID\",
-                        \"$userID\",
-                        \"DR000000\",
-                        \"CG000000\",
-                        \"$date\",
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0
-                    )
-                ");
+            $_SESSION["list"] = $checkList;
 
-                $_SESSION["list"] = $emptyList;
-            }
-            else {
-                $_SESSION["list"] = $checkList;
-            }
             return view('patienthome');
         }
     }
@@ -114,5 +89,45 @@ class UserController extends Controller
          $_SESSION["list"] = $prevCheckList;
 
         return view('patienthome');
+    }
+
+    public function patientCare() {
+        $getPatients = DB::select("
+            SELECT patient.patientID, CONCAT(patient.f_Name, \" \", patient.l_Name) as patient, 
+            morningMeds, afternoonMeds, nightMeds, breakfast, lunch, dinner
+            FROM patientchecklist
+            JOIN patient ON patient.patientID = patientchecklist.patientID
+            WHERE patientchecklist.caregiverID = \"" . $_SESSION["userID"] . "\"" . " 
+            AND patientchecklist.date = \"" . date("Y-m-d") . "\""
+        );
+
+        $_SESSION["patientList"] = $getPatients;
+
+        return view('caregiverhome');
+    }
+
+    public function updateCheckList(Request $request) {
+        $patientID = $request->input('PID');
+        $morningMed = $request->input('mm');
+        $afternoonMed = $request->input('am');
+        $nightMed = $request->input('nm');
+        $breakfast = $request->input('breakfast');
+        $lunch = $request->input('lunch');
+        $dinner = $request->input('dinner');
+
+        DB::update("
+            UPDATE patientchecklist
+            SET morningMeds = $morningMed,
+                afternoonMeds = $afternoonMed,
+                nightMeds = $nightMed,
+                breakfast = $breakfast,
+                lunch = $lunch,
+                dinner = $dinner
+            WHERE patientID = \"" . $patientID . "\""
+        );
+
+        $this->patientCare();
+
+        return view('caregiverhome');
     }
 }

@@ -20,6 +20,10 @@ $(".check").each(function() {
     }
 });
 
-$('#allDates').on('change', function() {
+$("#allDates").on("change", function() {
     $("#checkList").submit();
+});
+
+$("#updateCL").click(function() {
+    $("#updateList").submit();
 });
