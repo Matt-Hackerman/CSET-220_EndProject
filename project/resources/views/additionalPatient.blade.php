@@ -56,7 +56,7 @@
             <div class="parent">
             <div class="child">
                 <div class=button2>Patient ID</div>
-                <input name="patientID" id="patID" type="text" onchange="nameFinder()" required>
+                <input name="patientID" id="patID" type="text" required>
             </div>  
             <div class="child">
                 <div class=button2>Patient Name</div>
@@ -86,19 +86,20 @@
         </form>
     </body>
     <script>
+        patientID = document.getElementById("patID");
         
-        function nameFinder(){
+        patientID.addEventListener("input", e => {
+            const value = e.target.value;
             var test = JSON.parse('<?php echo json_encode($test) ?>');
-            patientID = document.getElementById("patID").value;
             for(x=0;x<test.length;x++){
-                if(patientID == test[x].patientID){
-                document.getElementById("name").value = test[x].name;
+                if(value.toLowerCase() == test[x].patientID.toLowerCase()){
+                    document.getElementById("name").value = test[x].name;
                 break;
                 }
                 else{
                     document.getElementById("name").value = "";
                 }
             }
-        }
-        </script>
+        });
+    </script>
 </html>

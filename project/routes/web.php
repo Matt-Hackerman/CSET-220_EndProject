@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\additionalPatientAPI;
+use App\Http\Controllers\adminReportAPI;
 use Illuminate\Support\Facades\Route;
 
 use App\http\Controllers\UserController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\DoctorAppointmentAPI;
 use App\Http\Controllers\registercontrollerAPI;
 
 use App\Http\Controllers\newroster;
+use App\Http\Controllers\patientSearchAPI;
 use App\Http\Controllers\PaymentAPI;
 use App\Http\Controllers\RosterAPI;
 
@@ -38,6 +40,10 @@ Route::get('/home', [UserController::class, 'dates']);
 Route::get('/additionalPatient', [additionalPatientAPI::class, 'index']);
 
 Route::get('/roster', [RosterAPI::class, 'index']);
+
+Route::get('/adminReport', [adminReportAPI::class, 'index']);
+
+Route::get('/patientSearch', [patientSearchAPI::class, 'index']);
 
 Route::get('/role', function () {
     return view('role');
