@@ -27,7 +27,7 @@ class patientSearchAPI extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

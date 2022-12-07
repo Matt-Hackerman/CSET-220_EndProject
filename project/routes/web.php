@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\http\Controllers\UserController;
 
 use App\Http\Controllers\DoctorAppointmentAPI;
-
+use App\Http\Controllers\employeeSearchAPI;
 use App\Http\Controllers\registercontrollerAPI;
 
 use App\Http\Controllers\newroster;
@@ -45,16 +45,14 @@ Route::get('/adminReport', [adminReportAPI::class, 'index']);
 
 Route::get('/patientSearch', [patientSearchAPI::class, 'index']);
 
+Route::get('/emp_search', [employeeSearchAPI::class, 'index']);
+
 Route::get('/role', function () {
     return view('role');
 });
 
 Route::get('/register', function () {
     return view('register');
-});
-
-Route::get('/emp_search', function () {
-    return view('Employee_search');
 });
 
 Route::get('/doctorappointment', [DoctorAppointmentAPI::class, 'index']);

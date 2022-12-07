@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\http\Controllers\UserController;
 
 use App\Http\Controllers\DoctorAppointmentAPI;
-
+use App\Http\Controllers\employeeSearchAPI;
 use App\Http\Controllers\registercontrollerAPI;
 
 use App\Http\Controllers\newroster;
@@ -39,6 +39,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('doctorappointment', DoctorAppointmentAPI::class);
 Route::resource('additionalPatient', additionalPatientAPI::class);
+Route::resource('emp_search', employeeSearchAPI::class);
 
 
 Route::resource('registercontroller', registercontrollerAPI::class);

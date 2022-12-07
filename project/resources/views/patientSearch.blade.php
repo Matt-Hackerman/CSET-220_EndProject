@@ -22,17 +22,25 @@
     input{
         font-size: 150%;
     }
-    th {
-        background-color: lightgray;
+    table {
+        overflow-y: scroll;
+        max-height: 300px;
+        min-height: fit-content;
+        display:block;
     }
     table, tr, th, td {
         border: 1px solid black;
         border-collapse: collapse;
         text-align: center;
         width: 1000px;
-        height: 50px;
         margin-left: auto;
         margin-right: auto; 
+    }
+    tr, th {
+        height: 25px;
+    }
+    th {
+        background-color: lightgray;
     }
     .hidden {
         display: none;
@@ -84,8 +92,7 @@
         search.addEventListener("input", e => {
             const value = e.target.value;
             for(x=0;x<test.length;x++){
-                console.log(`Patient: ${test[x].name}\n`);
-                const vis = test[x].name.toLowerCase().includes(value) || test[x].patientID.toLowerCase().includes(value);
+                const vis = test[x].name.toLowerCase().includes(value.toLowerCase()) || test[x].patientID.toLowerCase().includes(value.toLowerCase());
                 if(vis==false){
                     rows[x].style.display = "none";
                 }
