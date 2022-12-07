@@ -13,6 +13,7 @@ use App\Http\Controllers\registercontrollerAPI;
 use App\Http\Controllers\newroster;
 use App\Http\Controllers\patientSearchAPI;
 use App\Http\Controllers\PaymentAPI;
+use App\Http\Controllers\roleAPI;
 use App\Http\Controllers\RosterAPI;
 
 /*
@@ -47,9 +48,8 @@ Route::get('/patientSearch', [patientSearchAPI::class, 'index']);
 
 Route::get('/emp_search', [employeeSearchAPI::class, 'index']);
 
-Route::get('/role', function () {
-    return view('role');
-});
+Route::get('/role', [roleAPI::class, 'index']);
+
 
 Route::get('/register', function () {
     return view('register');

@@ -12,7 +12,7 @@ use App\Http\Controllers\registercontrollerAPI;
 
 use App\Http\Controllers\newroster;
 use App\Http\Controllers\PaymentAPI;
-
+use App\Http\Controllers\roleAPI;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +40,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('doctorappointment', DoctorAppointmentAPI::class);
 Route::resource('additionalPatient', additionalPatientAPI::class);
 Route::resource('emp_search', employeeSearchAPI::class);
+Route::resource('role', roleAPI::class);
 
 
 Route::resource('registercontroller', registercontrollerAPI::class);
