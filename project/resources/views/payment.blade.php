@@ -40,7 +40,7 @@
       border-style: none;
     }
   </style>
- 
+    {{-- <?php if($_SESSION["role"] == "admin") { ?> --}}
   <body>
     <?php $payment = $_SESSION['payment'] ?>
     <?php $doctorAppointments = $_SESSION['doctorAppointments'] ?>
@@ -141,4 +141,9 @@
     }
     
   </script>
+            {{-- <?php } else { ?>
+        <body>
+            <h2>Missing Access Level</h1>
+        </body>
+    <?php } ?> --}}
 </html>

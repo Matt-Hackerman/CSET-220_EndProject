@@ -1,17 +1,21 @@
 <?php
 
+use App\Http\Controllers\additionalPatientAPI;
+use App\Http\Controllers\adminReportAPI;
 use Illuminate\Support\Facades\Route;
 
 use App\http\Controllers\UserController;
 
 use App\Http\Controllers\DoctorAppointmentAPI;
-
+use App\Http\Controllers\employeeSearchAPI;
 use App\Http\Controllers\registercontrollerAPI;
 
 use App\Http\Controllers\newroster;
+use App\Http\Controllers\patientDoctorAPI;
+use App\Http\Controllers\patientSearchAPI;
 use App\Http\Controllers\PaymentAPI;
-
-
+use App\Http\Controllers\roleAPI;
+use App\Http\Controllers\RosterAPI;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,12 +47,19 @@ Route::get('/caregiverhome', [UserController::class, 'patientCare']);
 
 Route::get('/doctorhome', [UserController::class, 'doctorHome']);
 
-Route::get('/roster', function () {
-    return view('roster');
-});
-Route::get('/role', function () {
-    return view('role');
-});
+Route::get('/additionalPatient', [additionalPatientAPI::class, 'index']);
+
+Route::get('/roster', [RosterAPI::class, 'index']);
+
+Route::get('/adminReport', [adminReportAPI::class, 'index']);
+
+Route::get('/patientSearch', [patientSearchAPI::class, 'index']);
+
+Route::get('/emp_search', [employeeSearchAPI::class, 'index']);
+
+Route::get('/role', [roleAPI::class, 'index']);
+
+Route::get('/patientDoctor', [patientDoctorAPI::class, 'index']);
 
 Route::get('/register', function () {
     return view('register');
@@ -64,3 +75,4 @@ Route::get('/registercontroller', [registercontrollerAPI::class, 'index']);
 Route::get('/newroster', [newroster::class, 'index']);
 
 Route::get('/payment', [PaymentAPI::class, 'index']);
+

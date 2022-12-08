@@ -2,26 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\doctorappointments;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 session_start();
-class DoctorAppointmentAPI extends Controller
+class patientSearchAPI extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
-
     public function index()
-    {
-        
-        $_SESSION['patients'] = DB::select('select patientID, concat(f_Name, " ", l_Name) as name from patient;');
-        $_SESSION['doctors'] = DB::select('select doctorID, concat(f_Name, " ", l_Name) as name from doctor;');
-
-        return view('doctorappointment');
+    {   
+        $_SESSION['patientSearch'] = DB::select('SELECT patientID, concat(f_Name, l_Name) as name, ABS(truncate(DATEDIFF(DOB, curdate())/365, 0)) age, emergencyContact, contactRelationship, admissionDate from patient');
+        return view("patientSearch");
     }
 
     /**
@@ -32,16 +27,7 @@ class DoctorAppointmentAPI extends Controller
      */
     public function store(Request $request)
     {
-        $submit = $request->validate([
-            'patientID' => 'required',
-            'doctorID' => 'required',
-            'appointmentDate' => 'required',
-        ]);
-
-        $appointmentID = "AP" . random_int(100000, 999999);
-
-        doctorappointments::create(['appointmentID' => $appointmentID, 'patientID' => $submit['patientID'], 'doctorID' => $submit['doctorID'], 'appointmentDate' => $submit['appointmentDate']]);
-        return view('welcome');
+        
     }
 
     /**

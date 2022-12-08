@@ -2,26 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\doctorappointments;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-session_start();
-class DoctorAppointmentAPI extends Controller
+
+class adminReportAPI extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
-
     public function index()
     {
-        
-        $_SESSION['patients'] = DB::select('select patientID, concat(f_Name, " ", l_Name) as name from patient;');
-        $_SESSION['doctors'] = DB::select('select doctorID, concat(f_Name, " ", l_Name) as name from doctor;');
-
-        return view('doctorappointment');
+        $_SESSION['adminPatient'] = DB::select('select concat(patient.f_Name, " ", patient.l_Name) as patName,
+        concat(doctor.f_Name, " ", doctor.l_Name) as docName,
+        doctorAppoint, concat(caregiver.f_Name, " ", caregiver.l_Name) as careName,
+        doctorAppoint, morningMeds, afternoonMeds, nightMeds, breakfast, lunch, dinner
+        from patientchecklist join patient
+        on patientchecklist.patientID=patient.patientID
+        join doctor on patientchecklist.doctorID=doctor.doctorID
+        join caregiver on patientchecklist.caregiverID=caregiver.caregiverID
+        where patientchecklist.date = "'. date('Y-m-d') .'"');
+        return view('/adminReport');
     }
 
     /**
@@ -32,16 +34,7 @@ class DoctorAppointmentAPI extends Controller
      */
     public function store(Request $request)
     {
-        $submit = $request->validate([
-            'patientID' => 'required',
-            'doctorID' => 'required',
-            'appointmentDate' => 'required',
-        ]);
-
-        $appointmentID = "AP" . random_int(100000, 999999);
-
-        doctorappointments::create(['appointmentID' => $appointmentID, 'patientID' => $submit['patientID'], 'doctorID' => $submit['doctorID'], 'appointmentDate' => $submit['appointmentDate']]);
-        return view('welcome');
+        //
     }
 
     /**
