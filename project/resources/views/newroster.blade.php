@@ -40,6 +40,7 @@
       border-style: none;
     }
   </style>
+    {{-- <?php if($_SESSION["accessLevel"] == "5") { ?> --}}
   <body>
     <h1>New Roster</h1>
     <form action="/api/newroster" method="POST">
@@ -119,4 +120,9 @@
     </div>
     </form>
   </body>
+          {{-- <?php } else { ?>
+        <body>
+            <h2>Missing Access Level</h1>
+        </body>
+    <?php } ?> --}}
 </html>

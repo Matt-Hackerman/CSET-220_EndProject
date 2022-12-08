@@ -80,7 +80,9 @@
     <header>
 
     </header>
+    <?php if($_SESSION["accessLevel"] == 4) { ?>
     <body>
+        
         <h2>Past Prescriptions</h2>
         <?php $test = $_SESSION['prescription'] ?>
         <table>
@@ -156,4 +158,9 @@
             console.log("\n");
         });
     </script>
+    <?php } else { ?>
+        <body>
+            <h2>Missing Access Level</h1>
+        </body>
+    <?php } ?>
 </html>

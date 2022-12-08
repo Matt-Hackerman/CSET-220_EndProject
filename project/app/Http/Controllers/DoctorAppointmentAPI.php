@@ -41,7 +41,7 @@ class DoctorAppointmentAPI extends Controller
         $appointmentID = "AP" . random_int(100000, 999999);
 
         doctorappointments::create(['appointmentID' => $appointmentID, 'patientID' => $submit['patientID'], 'doctorID' => $submit['doctorID'], 'appointmentDate' => $submit['appointmentDate']]);
-        return redirect('welcome');
+        return view('welcome');
     }
 
     /**

@@ -15,7 +15,7 @@ class roleAPI extends Controller
      */
     public function index()
     {
-        $_SESSION['role'] = DB::select('select * from role');
+        $_SESSION['roles'] = DB::select('select * from role');
         return view('/role');
     }
 

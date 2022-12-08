@@ -1,4 +1,5 @@
 <html>
+{{-- <?php if($_SESSION["roles"] == "admin") { ?> --}}
 <body>
     <form action="/api/role" method="POST">
     <div class="text">
@@ -22,10 +23,10 @@
             <th>Role</th>
             <th>Access Level</th>
         </tr>
-        <?php for($i=0;$i<count($_SESSION['role']);$i++){ ?>
+        <?php for($i=0;$i<count($_SESSION['roles']);$i++){ ?>
         <tr>
-            <td><?php echo $_SESSION['role'][$i]->role ?></td>
-            <td><?php echo $_SESSION['role'][$i]->accessLevel ?></td>
+            <td><?php echo $_SESSION['roles'][$i]->role ?></td>
+            <td><?php echo $_SESSION['roles'][$i]->accessLevel ?></td>
         </tr>
         <?php } ?>
     </table>
@@ -40,6 +41,11 @@
     </form>
 
 </body>
+    {{-- <?php } else { ?>
+        <body>
+            <h2>Missing Access Level</h1>
+        </body>
+    <?php } ?> --}}
 </html> 
 <style>
     table {
