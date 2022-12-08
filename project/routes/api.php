@@ -33,19 +33,17 @@ Route::post('/logout', [UserController::class, 'userLogout']);
 
 Route::post('/previous_day', [UserController::class, 'patientCheckList']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/updateCheckList', [UserController::class, 'updateCheckList']);
 
 Route::resource('doctorappointment', DoctorAppointmentAPI::class);
 Route::resource('additionalPatient', additionalPatientAPI::class);
 Route::resource('emp_search', employeeSearchAPI::class);
 Route::resource('role', roleAPI::class);
 
-
 Route::resource('registercontroller', registercontrollerAPI::class);
 
 Route::resource('payment', PaymentAPI::class);
+
 Route::resource('newroster', newroster::class);
 
 

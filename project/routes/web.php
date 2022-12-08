@@ -36,7 +36,13 @@ Route::get('/login', function() {
     return view('login');
 });
 
-Route::get('/home', [UserController::class, 'dates']);
+Route::get('/home', function() {
+    return view('home');
+});
+
+Route::get('/patienthome', [UserController::class, 'dates']);
+
+Route::get('/caregiverhome', [UserController::class, 'patientCare']);
 
 Route::get('/additionalPatient', [additionalPatientAPI::class, 'index']);
 
