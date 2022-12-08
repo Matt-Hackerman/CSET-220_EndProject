@@ -41,6 +41,8 @@ Route::get('/patienthome', [UserController::class, 'dates']);
 
 Route::get('/caregiverhome', [UserController::class, 'patientCare']);
 
+Route::get('/doctorhome', [UserController::class, 'doctorHome']);
+
 Route::get('/roster', function () {
     return view('roster');
 });
