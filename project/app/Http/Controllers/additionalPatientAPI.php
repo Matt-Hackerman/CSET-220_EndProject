@@ -2,26 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\doctorappointments;
+use App\Models\patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-session_start();
-class DoctorAppointmentAPI extends Controller
+
+class additionalPatientAPI extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
-
     public function index()
     {
-        
-        $_SESSION['patients'] = DB::select('select patientID, concat(f_Name, " ", l_Name) as name from patient;');
-        $_SESSION['doctors'] = DB::select('select doctorID, concat(f_Name, " ", l_Name) as name from doctor;');
-
-        return view('doctorappointment');
+        $_SESSION['addPatients'] = DB::select('select patientID, concat(f_Name, " ", l_Name) as name from patient where admissionStatus = "Approved" and admissionDate is NULL and groups is NULL;');
+        return view('/additionalPatient');
     }
 
     /**
@@ -32,16 +27,13 @@ class DoctorAppointmentAPI extends Controller
      */
     public function store(Request $request)
     {
-        $submit = $request->validate([
-            'patientID' => 'required',
-            'doctorID' => 'required',
-            'appointmentDate' => 'required',
-        ]);
-
-        $appointmentID = "AP" . random_int(100000, 999999);
-
-        doctorappointments::create(['appointmentID' => $appointmentID, 'patientID' => $submit['patientID'], 'doctorID' => $submit['doctorID'], 'appointmentDate' => $submit['appointmentDate']]);
-        return view('welcome');
+        DB::table('patient')
+            ->where('patientID', $request->input('patientID'))
+            ->update(['groups' => $request->input('groups')]);
+        DB::table('patient')
+            ->where('patientID', $request->input('patientID'))
+            ->update(['admissionDate' => $request->input('admissionDate')]);
+        return view("welcome");
     }
 
     /**
