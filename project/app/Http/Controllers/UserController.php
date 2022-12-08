@@ -156,4 +156,8 @@ class UserController extends Controller
 
         return view("doctorhome");
     }
+
+    public function familyHome(Request $request) {
+        
+    }
 }
