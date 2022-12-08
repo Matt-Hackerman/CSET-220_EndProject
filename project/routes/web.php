@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\http\Controllers\UserController;
 
 use App\Http\Controllers\DoctorAppointmentAPI;
-
+use App\Http\Controllers\registerapprovalAPI;
 use App\Http\Controllers\registercontrollerAPI;
 
 use App\Http\Controllers\newroster;
@@ -51,7 +51,11 @@ Route::get('/doctorappointment', [DoctorAppointmentAPI::class, 'index']);
 
 Route::get('/registercontroller', [registercontrollerAPI::class, 'index']);
 
+Route::get('/registrationapproval', function () {
+    return view('registrationapproval');
+});
 
+Route::get('/registrationapproval', [registerapprovalAPI::class, 'index']);
 
 Route::get('/newroster', [newroster::class, 'index']);
 
