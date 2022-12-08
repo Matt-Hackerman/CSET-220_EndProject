@@ -66,3 +66,26 @@ Route::get('/newroster', [newroster::class, 'index']);
 
 Route::get('/payment', [PaymentAPI::class, 'index']);
 
+Route::get('/Doctor_home', function() {
+    return view('Doc_home');
+});
+
+Route::get('/Caregiver_home', function() {
+    return view('Caregiver_home');
+});
+
+Route::get('/Family_home', function() {
+    return view('Family_home');
+});
+
+Route::get('/Patient_doctor', function() {
+    return view('Patient_doctor');
+});
+
+Route::get('/Patient_home', function() {
+    return view('Patient_home');
+});
+
+Route::get('/Partient_search', function() {
+    return view('Patient_search');
+});
