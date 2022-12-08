@@ -1,54 +1,6 @@
 <html>
-{{-- <?php if($_SESSION["roles"] == "admin") { ?> --}}
-<body>
-    <form action="/api/role" method="POST">
-    <div class="text">
-        <div>
-            <label for="emp_id">Role</label>
-            <input id="role" type="text" name="role">
-        </div>
-        <div>
-            <label for="New_Salary">Accesss Level</label>
-            <select id="access" type="text" name="accessLevel">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-        </div>
-    </div>
-    <table>
-        <tr>
-            <th>Role</th>
-            <th>Access Level</th>
-        </tr>
-        <?php for($i=0;$i<count($_SESSION['roles']);$i++){ ?>
-        <tr>
-            <td><?php echo $_SESSION['roles'][$i]->role ?></td>
-            <td><?php echo $_SESSION['roles'][$i]->accessLevel ?></td>
-        </tr>
-        <?php } ?>
-    </table>
-    <div class="grid2">
-        <div class="click">
-            <input value="Ok" class="submit" type="submit">  
-            <a href="">
-                <button>Cancel</button>
-            </a>
-        </div>
-    </div>
-    </form>
-
-</body>
-    {{-- <?php } else { ?>
-        <body>
-            <h2>Missing Access Level</h1>
-        </body>
-    <?php } ?> --}}
-</html> 
-<style>
-    table {
+    <style>
+        table {
             overflow-y: scroll;
             max-height: 300px;
             min-height: fit-content;
@@ -127,4 +79,30 @@
             color:white;
             border-style: none;
         }
-</style>
+    </style>
+    <head>
+
+    </head>
+    <body>
+        <?php print_r($_SESSION['approval']) ?>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Approval</th>
+                <th>Submit</th>
+            </tr>
+                <?php for($i=0;$i<count($_SESSION['approval']);$i++){ ?>
+                    <form action="/api/registrationApproval" method="POST">
+                    <input type="hidden" name="ID" value="<?php echo $_SESSION['approval'][$i]->ID ?>">
+                    <tr>
+                        <td><?php echo $_SESSION['approval'][$i]->name ?></td>
+                        <td><?php echo $_SESSION['approval'][$i]->role ?></td>
+                        <td> <div> Yes<input value="Approved" name="approval" type="radio"> </div> <div>No<input value="Denied" name="approval" type="radio"></div></td>
+                        <td><input class="submit" type="submit"></td>
+                    </tr>
+                </form>
+                <?php } ?>
+        </table>
+    </body>
+</html>
