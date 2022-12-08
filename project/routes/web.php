@@ -45,6 +45,8 @@ Route::get('/patienthome', [UserController::class, 'dates']);
 
 Route::get('/caregiverhome', [UserController::class, 'patientCare']);
 
+Route::get('/doctorhome', [UserController::class, 'doctorHome']);
+
 Route::get('/additionalPatient', [additionalPatientAPI::class, 'index']);
 
 Route::get('/roster', [RosterAPI::class, 'index']);
@@ -58,7 +60,6 @@ Route::get('/emp_search', [employeeSearchAPI::class, 'index']);
 Route::get('/role', [roleAPI::class, 'index']);
 
 Route::get('/patientDoctor', [patientDoctorAPI::class, 'index']);
-
 
 Route::get('/register', function () {
     return view('register');

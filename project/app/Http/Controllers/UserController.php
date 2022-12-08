@@ -130,4 +130,30 @@ class UserController extends Controller
 
         return view('caregiverhome');
     }
+
+    public function doctorHome() {
+        $oldAppoint = DB::select("
+            SELECT CONCAT(patient.f_Name, \" \", patient.l_Name) as name, appointmentDate, prescription.comment, morningMed, 
+            afternoonMed, nightMed 
+            FROM prescription 
+            JOIN patient ON prescription.patientID = patient.patientID 
+            JOIN doctorappointments ON doctorappointments.doctorID = prescription.doctorID 
+            WHERE appointmentDate = prescription.date 
+            AND appointmentDate < \"" . date("Y-m-d") . "\"" . "
+            AND doctorappointments.doctorID = \"" . $_SESSION["userID"] . "\""
+        );
+
+        $currentAppoint = DB::select("
+            SELECT CONCAT(patient.f_Name, \" \", patient.l_Name) as name, appointmentDate 
+            FROM patient 
+            JOIN doctorappointments ON patient.patientID = doctorappointments.patientID 
+            WHERE appointmentDate >= \"" . date("Y-m-d") . "\"" . "
+            AND doctorID = \"" . $_SESSION["userID"] . "\""
+        );
+
+        $_SESSION["oldAppointments"] = $oldAppoint;
+        $_SESSION["appointments"] = $currentAppoint;
+
+        return view("doctorhome");
+    }
 }
