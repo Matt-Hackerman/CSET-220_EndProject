@@ -15,7 +15,7 @@ class additionalPatientAPI extends Controller
      */
     public function index()
     {
-        $_SESSION['addPatients'] = DB::select('select patientID, concat(f_Name, " ", l_Name) as name from patient;');
+        $_SESSION['addPatients'] = DB::select('select patientID, concat(f_Name, " ", l_Name) as name from patient where admissionStatus = "Approved" and admissionDate is NULL and groups is NULL;');
         return view('/additionalPatient');
     }
 

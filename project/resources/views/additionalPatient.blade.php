@@ -48,6 +48,7 @@
     </style>
     <head>
     </head>
+    {{-- <?php if($_SESSION["accessLevel"] == 5) { ?> --}}
     <body>
         <?php $test = $_SESSION['addPatients'] ?>
         <h1>Additional Patient Info</h1>
@@ -56,7 +57,12 @@
             <div class="parent">
             <div class="child">
                 <div class=button2>Patient ID</div>
-                <input name="patientID" id="patID" type="text" required>
+                <select name="patientID" id="patID" type="text" required>
+                    <option selected hidden>Select a patientID</option>
+                    <?php for($i=0;$i<count($test);$i++){ ?>
+                        <option value="<?php echo $test[$i]->patientID ?>"><?php echo $test[$i]->patientID ?></option>
+                    <?php } ?>
+                </select>
             </div>  
             <div class="child">
                 <div class=button2>Patient Name</div>
@@ -102,4 +108,9 @@
             }
         });
     </script>
+    {{-- <?php } else { ?>
+        <body>
+            <h2>Missing Access Level</h1>
+        </body>
+    <?php } ?> --}}
 </html>

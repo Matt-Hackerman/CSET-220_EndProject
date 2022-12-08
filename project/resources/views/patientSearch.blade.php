@@ -46,6 +46,7 @@
         display: none;
     }
     </style>
+    {{-- <?php if($_SESSION["accessLevel"] > 2) { ?> --}}
     <body>
     <?php $test = $_SESSION['patientSearch'] ?>
     <div class="grid1">
@@ -104,4 +105,9 @@
         });
 
     </script>
+           {{-- <?php } else { ?>
+        <body>
+            <h2>Missing Access Level</h1>
+        </body>
+    <?php } ?> --}}
 </html>

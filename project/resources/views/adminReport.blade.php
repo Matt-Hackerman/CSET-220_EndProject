@@ -35,6 +35,7 @@
         margin-right: auto; 
 }
     </style>
+    {{-- <?php if($_SESSION["accessLevel"] == "5") { ?> --}}
     <body>
     <div class="grid1">
         <h2>Date</h2>
@@ -86,5 +87,9 @@
         
       </table>
     </body>
-
+          {{-- <?php } else { ?>
+        <body>
+            <h2>Missing Access Level</h1>
+        </body>
+    <?php } ?> --}}
 </html>
