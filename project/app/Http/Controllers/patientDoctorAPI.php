@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\prescription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 session_start();
@@ -14,9 +15,7 @@ class patientDoctorAPI extends Controller
      */
     public function index()
     {
-        $_SESSION['prescription'] = DB::select('select * from prescription');
-        // $_SESSION['prescription'] = DB::select('prescriptionID, prescription.patientID, date, comment, morningMed, afternoonMed, nightMed, doctorID, concat(f_Name, " ", l_Name) as name from prescription join patient on prescription.patientID=patient.patientID where doctorID = "'.$_SESSION['userID'].'" and patientID = blank');
-        return view("patientDoctor");
+    
     }
 
     /**
@@ -27,7 +26,18 @@ class patientDoctorAPI extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $preID = "PS" . random_int(100000, 999999);
+
+        prescription::create(['prescriptionID' => $preID,
+        'patientID' => $_SESSION['pid'],
+        'date' => date('Y-m-d'),
+        'comment' => $request->input('comment'),
+        'morningMed' => $request->input('morningMed'),
+        'afternoonMed' => $request->input('afternoonMed'),
+        'nightMed' => $request->input('nightMed'),
+        'doctorID' => $_SESSION['userID']]);
+
+        return view('welcome');
     }
 
     /**

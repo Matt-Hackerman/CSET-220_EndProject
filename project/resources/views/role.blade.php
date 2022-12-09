@@ -1,5 +1,5 @@
 <html>
-{{-- <?php if($_SESSION["roles"] == "admin") { ?> --}}
+<?php if($_SESSION["roles"] == "admin") { ?>
 <body>
     <form action="/api/role" method="POST">
     <div class="text">
@@ -41,11 +41,11 @@
     </form>
 
 </body>
-    {{-- <?php } else { ?>
+    <?php } else { ?>
         <body>
             <h2>Missing Access Level</h1>
         </body>
-    <?php } ?> --}}
+    <?php } ?>
 </html> 
 <style>
     table {

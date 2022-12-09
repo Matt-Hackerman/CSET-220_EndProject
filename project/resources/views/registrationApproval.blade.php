@@ -83,6 +83,7 @@
     <head>
 
     </head>
+    <?php if($_SESSION["accessLevel"] == "5") { ?>
     <body>
         <?php print_r($_SESSION['approval']) ?>
         <table>
@@ -105,4 +106,9 @@
                 <?php } ?>
         </table>
     </body>
+    <?php } else { ?>
+        <body>
+            <h2>Missing Access Level</h1>
+        </body>
+    <?php } ?>
 </html>

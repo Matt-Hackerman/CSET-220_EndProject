@@ -83,7 +83,7 @@
     <header>
 
     </header>
-    {{-- <?php if($_SESSION["accessLevel"] == "5") { ?> --}}
+    <?php if($_SESSION["accessLevel"] == "5") { ?>
     <body>
         <?php $test = $_SESSION['employeeSearch'] ?>
         <form action="/api/emp_search" method="POST">
@@ -92,7 +92,7 @@
                 <label for="emp_id">Emp ID</label>
                 <input id="search" type="text" name="empID">
             </div>
-            {{-- <?php if($_SESSION["role"] == "admin") { ?> --}}
+            <?php if($_SESSION["role"] == "admin") { ?>
 
             <div>
                 <label for="New_Salary">New Salary</label>
@@ -103,7 +103,7 @@
                     <option value="4">120000</option>
                 </select>
             </div>
-            {{-- <?php } ?> --}}
+            <?php } ?>
         </div>
         <table>
             <tr>
@@ -122,9 +122,9 @@
             <?php } ?>
         </table>
         <div class="click">
-            {{-- <?php if($_SESSION["role"] == "admin") { ?> --}}
-            <input value="Ok" class="submit" type="submit">  
-            {{-- <?php } ?> --}}
+            <?php if($_SESSION["role"] == "admin") { ?>
+                <input value="Ok" class="submit" type="submit">  
+            <?php } ?>
             <a href="">
                 <button>Cancel</button>
             </a>
@@ -150,9 +150,9 @@
             console.log("\n");
         });
     </script>
-        {{-- <?php } else { ?>
+        <?php } else { ?>
         <body>
             <h2>Missing Access Level</h1>
         </body>
-    <?php } ?> --}}
+    <?php } ?>
 </html>

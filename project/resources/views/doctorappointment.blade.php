@@ -48,7 +48,7 @@
 </style>
 <head>
 </head>
-{{-- <?php if($_SESSION["role"] == 5) { ?> --}}
+<?php if($_SESSION["role"] == 5) { ?>
 <body>
   <?php $test = $_SESSION['patients'] ?>
   <?php $test2 = $_SESSION['doctorRoster'] ?>
@@ -110,9 +110,9 @@
     }
   });
 </script>
-    {{-- <?php } else { ?>
+    <?php } else { ?>
         <body>
             <h2>Missing Access Level</h1>
         </body>
-    <?php } ?> --}}
+    <?php } ?>
 </html>
