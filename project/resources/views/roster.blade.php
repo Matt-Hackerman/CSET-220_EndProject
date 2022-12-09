@@ -1,8 +1,5 @@
 <html>
     <style>
-    body{
-        padding-top: 5%;
-    }
     .grid1{
         display: grid;
         grid-template-columns: repeat(8, 1fr);
@@ -35,6 +32,9 @@
         margin-right: auto; 
 }
     </style>
+    <head>
+        <link rel="stylesheet" href="../homePage.css">
+    </head>
     <body>
         <header class="header">
             <ul>
@@ -45,8 +45,10 @@
                 <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/registrationApproval">Approval</a></li><?php } ?>
                 <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/newroster">newRoster</a></li><?php } ?>
                 <li><a href="/roster">Roster</a></li>
-                <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/adminReport">Admin Report</a></li><?php } ?>
                 <?php if($_SESSION['role'] == "admin") {?><li><a href="/payment">Payment</a></li><?php } ?>
+                <form id="logout" action="/api/logout" method="POST">
+                    <button type="submit">Logout</button>
+                </form>
             </ul>
         </header>
         <div class="grid1">
@@ -73,7 +75,6 @@
         </tr>
         <?php } else { ?>
             <tr>
-                <li><a href="/home">Home</a></li>
                 <td><?php echo $_SESSION['roster'][0]->superName ?></td>
                 <td><?php echo $_SESSION['roster'][0]->doctorName ?></td>
                 <td><?php echo $_SESSION['careRoster1'][0]->name ?></td>
@@ -85,6 +86,7 @@
 
         
       </table>
+      <script src="../homePage.js"></script>
     </body>
 
 </html>

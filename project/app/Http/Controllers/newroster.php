@@ -33,7 +33,7 @@ class newroster extends Controller
     public function store(Request $request)
     {
         roster::create(['date' => $request->input('date'), 'superID' => $request->input('superID'), 'doctorID' => $request->input('doctorID'), 'caregiver_1_ID' => $request->input('caregiver_1_ID'), 'caregiver_2_ID' => $request->input('caregiver_2_ID'), 'caregiver_3_ID' => $request->input('caregiver_3_ID'), 'caregiver_4_ID' => $request->input('caregiver_4_ID')]);
-        return view("welcome");
+        return view("home");
     }
 
     /**

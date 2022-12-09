@@ -43,34 +43,34 @@ class registrationApprovalAPI extends Controller
             $test = DB::table('admin')
             ->where('adminID', $id)
             ->update(['admissionStatus' => $request->input('approval')]);
-            return view("welcome");
+            return view("registrationApproval");
         } else if(substr($id, 0, 2) == "CG"){
             $test = DB::table('caregiver')
             ->where('caregiverID', $id)
             ->update(['admissionStatus' => $request->input('approval')]);
-            return view("welcome");
+            return view("registrationApproval");
         } else if(substr($id, 0, 2) == "SV"){
             $test = DB::table('supervisor')
             ->where('superID', $id)
             ->update(['admissionStatus' => $request->input('approval')]);
-            return view("welcome");
+            return view("registrationApproval");
         } else if(substr($id, 0, 2) == "DR"){
             $test = DB::table('doctor')
             ->where('doctorID', $id)
             ->update(['admissionStatus' => $request->input('approval')]);
-            return view("welcome");
+            return view("registrationApproval");
         }
         else if(substr($id, 0, 2) == "FM"){
             $test = DB::table('patientfm')
             ->where('patient_FM_ID', $id)
             ->update(['admissionStatus' => $request->input('approval')]);
-            return view("welcome");
+            return view("registrationApproval");
         }
         else if(substr($id, 0, 2) == "PT"){
             $test = DB::table('patient')
             ->where('patientID', $id)
             ->update(['admissionStatus' => $request->input('approval')]);
-            return view("welcome");
+            return view("registrationApproval");
         }
     }
 

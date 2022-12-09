@@ -40,6 +40,9 @@
       border-style: none;
     }
   </style>
+  <head>
+    <link rel="stylesheet" href="../homePage.css">
+  </head>
     <?php if($_SESSION["role"] == "admin") { ?>
   <body>
     <header class="header">
@@ -51,8 +54,10 @@
           <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/registrationApproval">Approval</a></li><?php } ?>
           <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/newroster">newRoster</a></li><?php } ?>
           <li><a href="/roster">Roster</a></li>
-          <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/adminReport">Admin Report</a></li><?php } ?>
           <?php if($_SESSION['role'] == "admin") {?><li><a href="/payment">Payment</a></li><?php } ?>
+          <form id="logout" action="/api/logout" method="POST">
+            <button type="submit">Logout</button>
+          </form>
       </ul>
   </header>
     <?php $payment = $_SESSION['payment'] ?>
@@ -89,6 +94,7 @@
     <div class="parent" style=display:inline-block;text-align:center>
       <button class="submit" onclick="payment()">Update</button>
     </div>
+    <script src="../homePage.js"></script>
   </body>
   <script>
     var pay = JSON.parse('<?php echo json_encode($payment) ?>');
@@ -165,11 +171,14 @@
                 <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/registrationApproval">Approval</a></li><?php } ?>
                 <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/newroster">newRoster</a></li><?php } ?>
                 <li><a href="/roster">Roster</a></li>
-                <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/adminReport">Admin Report</a></li><?php } ?>
                 <?php if($_SESSION['role'] == "admin") {?><li><a href="/payment">Payment</a></li><?php } ?>
+                <form id="logout" action="/api/logout" method="POST">
+                  <button type="submit">Logout</button>
+                </form>
             </ul>
         </header>
             <h2>Missing Access Level</h1>
+            <script src="../homePage.js"></script>
         </body>
     <?php } ?>
 </html>
