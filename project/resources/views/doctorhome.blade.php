@@ -9,6 +9,7 @@
     <body> 
         <?php if($_SESSION["accessLevel"] == 4) { ?>
             <div class="checkListTable">
+                <h1>Previous Appointments</h1>
                 <table>
                     <tr>
                         <th>Patient</th>
@@ -20,12 +21,12 @@
                     </tr>
                     <?php if (count($_SESSION["oldAppointments"]) == 0) { ?>
                     <tr>
-                        <td>None</td>
-                        <td>None</td>
-                        <td>None</td>
-                        <td>None</td>
-                        <td>None</td>
-                        <td>None</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     <?php } else { ?>
                         <?php for ($i = 0; $i < count($_SESSION["oldAppointments"]); $i++) { ?>
@@ -45,6 +46,7 @@
             <div>Date: <?php echo date("Y-m-d"); ?></div><br>
 
             <div class="checkListTable">
+                <h1>Appointments</h1>
                 <table>
                     <tr>
                         <th>Patient</th>
@@ -52,8 +54,8 @@
                     </tr>
                     <?php if (count($_SESSION["appointments"]) == 0) { ?>
                     <tr>
-                        <td>None</td>
-                        <td>None</td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     <?php } else { ?>
                         <?php for ($i = 0; $i < count($_SESSION["appointments"]); $i++) { ?>
