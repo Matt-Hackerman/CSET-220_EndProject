@@ -14,43 +14,20 @@
         <h1><?php echo $_SESSION["currentUser"]; ?></h1>
         <h1><?php echo $_SESSION["userID"]; ?></h1>
 
-        <form id="checkList" action="/api/previous_day" method="POST">
-            Date: <select id="allDates" name="date">
-                <option value="<?php date("Y-m-d") ?>"><?php echo date("Y-m-d"); ?></option>
-                <?php for($i = 0; $i < count($_SESSION["dates"]); $i++) { ?>
-                    <option value="<?php echo $_SESSION["dates"][$i]->date;?>"><?php print_r($_SESSION["dates"][$i]->date); ?></option>
-                <?php
-                }
-                ?>
-            </select>
-        </form>
+        <?php 
+            $al = $_SESSION["accessLevel"];
+            $role = $_SESSION["role"];
+            $hide = "hidden";
+            $show = "show";
+        ?>
 
-        <div class="checkListTable">
-            <table>
-                <tr>
-                    <th>Doctor</th>
-                    <th>Appointment today</th>
-                    <th>Caregiver</th>
-                    <th>Morning Meds</th>
-                    <th>Afternoon Meds</th>
-                    <th>Night Meds</th>
-                    <th>Breakfast</th>
-                    <th>Lunch</th>
-                    <th>Dinner</th>
-                </tr>
-                <tr>
-                    <td><?php echo $_SESSION["list"][0]->doctor ?></td>
-                    <td id="check" class="check"><?php echo $_SESSION["list"][0]->doctorAppoint ?></td>
-                    <td><?php echo $_SESSION["list"][0]->caregiver ?></td>
-                    <td id="yesNo" class="symbol"><?php echo $_SESSION["list"][0]->morningMeds ?></td>
-                    <td id="yesNo" class="symbol"><?php echo $_SESSION["list"][0]->afternoonMeds ?></td>
-                    <td id="yesNo" class="symbol"><?php echo $_SESSION["list"][0]->nightMeds ?></td>
-                    <td id="yesNo" class="symbol"><?php echo $_SESSION["list"][0]->breakfast ?></td>
-                    <td id="yesNo" class="symbol"><?php echo $_SESSION["list"][0]->lunch ?></td>
-                    <td id="yesNo" class="symbol"><?php echo $_SESSION["list"][0]->dinner ?></td>
-                </tr>
-            </table>
-        </div>
+        <iframe src="/patientFMhome" class="<?php echo ($al == 1) ? $show : $hide; ?> homePageIframe" frameBorder="0"></iframe>
+        <iframe src="/patienthome" class="<?php echo ($al == 2) ? $show : $hide; ?> homePageIframe" frameBorder="0"></iframe>
+        <iframe src="/caregiverhome" class="<?php echo ($al == 3) ? $show : $hide; ?> homePageIframe" frameBorder="0"></iframe>
+        <iframe src="/doctorhome" class="<?php echo ($al == 4) ? $show : $hide; ?> homePageIframe" frameBorder="0"></iframe>
+        <iframe src="/supervisorhome" class="<?php echo ($al == 5 && $role == "supervisor") ? $show : $hide; ?> homePageIframe" frameBorder="0"></iframe>
+        <iframe src="/adminhome" class="<?php echo ($al == 5 && $role == "admin") ? $show : $hide; ?> homePageIframe" frameBorder="0"></iframe>
+
         <script src="../homePage.js"></script>
     </body>
 </html>

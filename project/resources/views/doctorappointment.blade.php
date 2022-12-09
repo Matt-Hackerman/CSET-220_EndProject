@@ -48,8 +48,10 @@
 </style>
 <head>
 </head>
+{{-- <?php if($_SESSION["role"] == 5) { ?> --}}
 <body>
   <?php $test = $_SESSION['patients'] ?>
+  <?php $test2 = $_SESSION['doctorRoster'] ?>
   <h1>Doctor's Appointment</h1>
   <form action="/api/doctorappointment" method="POST">
     @csrf
@@ -68,7 +70,7 @@
     <div class="parent" style=display:inline-block>
       <div class="child">
         <div class=button2>Date</div>
-        <input value="<?php echo date('Y-m-d') ?>" name="appointmentDate" type="date" required>
+        <input id="date" value="<?php echo date('Y-m-d') ?>" name="appointmentDate" type="date" required>
       </div>
     </div>
     <br>
@@ -77,7 +79,7 @@
         <div class=button2>Doctor</div>
         <select name="doctorID" id="" required>
           <?php for($i=0;$i<count($_SESSION['doctors']);$i++){?>
-            <option value="<?php echo $_SESSION['doctors'][$i]->doctorID;?>"><?php echo $_SESSION['doctors'][$i]->name;?></option>
+            <option class="options" value="<?php echo $_SESSION['doctors'][$i]->doctorID;?>"><?php echo $_SESSION['doctors'][$i]->name;?></option>
           <?php } ?>
         </select>
       </div>
@@ -92,23 +94,25 @@
 
 <script>
 
-var input = document.getElementById("patID");
-input.addEventListener("keypress", function(event) {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    nameFinder();
-  }
-});
+  patientID = document.getElementById("patID");
 
-  function nameFinder(){
+  patientID.addEventListener("input", e => {
+    const value = e.target.value;
     var test = JSON.parse('<?php echo json_encode($test) ?>');
-    patientID = document.getElementById("patID").value;
     for(x=0;x<test.length;x++){
-      if(patientID == test[x].patientID){
-        document.getElementById("name").value = test[x].name;
-      }
+        if(value.toLowerCase() == test[x].patientID.toLowerCase()){
+          document.getElementById("name").value = test[x].name;
+          break;
+        }
+        else{
+          document.getElementById("name").value = "";
+        }
     }
-    
-  }
+  });
 </script>
+    {{-- <?php } else { ?>
+        <body>
+            <h2>Missing Access Level</h1>
+        </body>
+    <?php } ?> --}}
 </html>

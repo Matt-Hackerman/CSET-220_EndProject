@@ -2,26 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\doctorappointments;
+use App\Models\role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 session_start();
-class DoctorAppointmentAPI extends Controller
+class roleAPI extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
-
     public function index()
     {
-        
-        $_SESSION['patients'] = DB::select('select patientID, concat(f_Name, " ", l_Name) as name from patient;');
-        $_SESSION['doctors'] = DB::select('select doctorID, concat(f_Name, " ", l_Name) as name from doctor;');
-
-        return view('doctorappointment');
+        $_SESSION['roles'] = DB::select('select * from role');
+        return view('/role');
     }
 
     /**
@@ -31,17 +26,10 @@ class DoctorAppointmentAPI extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $submit = $request->validate([
-            'patientID' => 'required',
-            'doctorID' => 'required',
-            'appointmentDate' => 'required',
-        ]);
-
-        $appointmentID = "AP" . random_int(100000, 999999);
-
-        doctorappointments::create(['appointmentID' => $appointmentID, 'patientID' => $submit['patientID'], 'doctorID' => $submit['doctorID'], 'appointmentDate' => $submit['appointmentDate']]);
-        return view('welcome');
+    {   
+        $max = DB::select('select max(roleID) + 1 as max from role');
+        role::create(['roleID' => $max[0]->max, 'role' => $request->input('role'), 'accessLevel' => $request->input('accessLevel')]);
+        return view("welcome");
     }
 
     /**
