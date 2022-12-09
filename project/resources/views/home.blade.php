@@ -7,8 +7,8 @@
     </head>
 
     <body>
-        <form action="/api/logout" method="POST">
-            <button type="submit" name="logout">Logout</button>
+        <form id="logout" action="/api/logout" method="POST">
+            <button type="submit">Logout</button>
         </form>
 
         <h1><?php echo $_SESSION["currentUser"]; ?></h1>
