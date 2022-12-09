@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+session_start();
 class additionalPatientAPI extends Controller
 {
     /**

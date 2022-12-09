@@ -82,7 +82,19 @@
     </header>
     <?php if($_SESSION["accessLevel"] == 4) { ?>
     <body>
-        
+        <header class="header">
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/additionalPatient">Additional Patients</a></li><?php } ?>
+                <?php if($_SESSION['accessLevel'] > 2) {?><li><a href="/patientSearch">Patients</a></li><?php } ?>
+                <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/emp_search">Employees</a></li><?php } ?>
+                <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/registrationApproval">Approval</a></li><?php } ?>
+                <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/newroster">newRoster</a></li><?php } ?>
+                <li><a href="/roster">Roster</a></li>
+                <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/adminReport">Admin Report</a></li><?php } ?>
+                <?php if($_SESSION['role'] == "admin") {?><li><a href="/payment">Payment</a></li><?php } ?>
+            </ul>
+        </header>
         <h2>Past Prescriptions</h2>
         <?php $test = DB::select('select * from prescription where patientID = "'.$_SESSION['pid'].'" and doctorID = "'.$_SESSION['userID'].'"');?>
         <?php $test2 = DB::select('select appointmentDate from doctorappointments where patientID = "'.$_SESSION['pid'].'" and doctorID = "'.$_SESSION['userID'].'"');?>
@@ -168,6 +180,19 @@
     </script>
     <?php } else { ?>
         <body>
+            <header class="header">
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/additionalPatient">Additional Patients</a></li><?php } ?>
+                    <?php if($_SESSION['accessLevel'] > 2) {?><li><a href="/patientSearch">Patients</a></li><?php } ?>
+                    <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/emp_search">Employees</a></li><?php } ?>
+                    <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/registrationApproval">Approval</a></li><?php } ?>
+                    <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/newroster">newRoster</a></li><?php } ?>
+                    <li><a href="/roster">Roster</a></li>
+                    <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/adminReport">Admin Report</a></li><?php } ?>
+                    <?php if($_SESSION['role'] == "admin") {?><li><a href="/payment">Payment</a></li><?php } ?>
+                </ul>
+            </header>
             <h2>Missing Access Level</h1>
         </body>
     <?php } ?>

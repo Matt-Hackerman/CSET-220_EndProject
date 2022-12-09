@@ -85,6 +85,19 @@
     </header>
     <?php if($_SESSION["accessLevel"] == "5") { ?>
     <body>
+        <header class="header">
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/additionalPatient">Additional Patients</a></li><?php } ?>
+                <?php if($_SESSION['accessLevel'] > 2) {?><li><a href="/patientSearch">Patients</a></li><?php } ?>
+                <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/emp_search">Employees</a></li><?php } ?>
+                <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/registrationApproval">Approval</a></li><?php } ?>
+                <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/newroster">newRoster</a></li><?php } ?>
+                <li><a href="/roster">Roster</a></li>
+                <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/adminReport">Admin Report</a></li><?php } ?>
+                <?php if($_SESSION['role'] == "admin") {?><li><a href="/payment">Payment</a></li><?php } ?>
+            </ul>
+        </header>
         <?php $test = $_SESSION['employeeSearch'] ?>
         <form action="/api/emp_search" method="POST">
         <div class="text">
@@ -152,6 +165,19 @@
     </script>
         <?php } else { ?>
         <body>
+            <header class="header">
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/additionalPatient">Additional Patients</a></li><?php } ?>
+                    <?php if($_SESSION['accessLevel'] > 2) {?><li><a href="/patientSearch">Patients</a></li><?php } ?>
+                    <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/emp_search">Employees</a></li><?php } ?>
+                    <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/registrationApproval">Approval</a></li><?php } ?>
+                    <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/newroster">newRoster</a></li><?php } ?>
+                    <li><a href="/roster">Roster</a></li>
+                    <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/adminReport">Admin Report</a></li><?php } ?>
+                    <?php if($_SESSION['role'] == "admin") {?><li><a href="/payment">Payment</a></li><?php } ?>
+                </ul>
+            </header>
             <h2>Missing Access Level</h1>
         </body>
     <?php } ?>
