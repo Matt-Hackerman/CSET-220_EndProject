@@ -37,13 +37,14 @@ Route::post('/previous_day', [UserController::class, 'patientCheckList']);
 
 Route::post('/updateCheckList', [UserController::class, 'updateCheckList']);
 
+Route::post('/newPage', [UserController::class, 'newPage']);
+
 Route::resource('doctorappointment', DoctorAppointmentAPI::class);
 Route::resource('additionalPatient', additionalPatientAPI::class);
 Route::resource('emp_search', employeeSearchAPI::class);
 Route::resource('role', roleAPI::class);
-Route::resource('patientDoctorAPI', patientDoctorAPI::class);
+Route::resource('patientDoctor', patientDoctorAPI::class);
 Route::resource('registrationApproval', registrationApprovalAPI::class);
-
 Route::resource('registercontroller', registercontrollerAPI::class);
 
 Route::resource('payment', PaymentAPI::class);
