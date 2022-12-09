@@ -60,6 +60,9 @@ class registerapprovalAPI extends Controller
             supervisor::where('superID',$request->input('theirid'))->delete();
             caregiver::where('caregiverID',$request->input('theirid'))->delete();
             }
+            return redirect('registrationapproval');
+        
+            return view('registrationapproval');
 }
    
     /**
