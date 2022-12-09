@@ -111,6 +111,7 @@ input{
 <input type=button class=button value=Cancel onclick=location.href="newroster">
 </div>
 </form>
+<script src="../homePage.js"></script>
 </body>
 <script>
 function myFunction() {

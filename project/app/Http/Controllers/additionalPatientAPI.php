@@ -33,7 +33,7 @@ class additionalPatientAPI extends Controller
         DB::table('patient')
             ->where('patientID', $request->input('patientID'))
             ->update(['admissionDate' => $request->input('admissionDate')]);
-        return view("welcome");
+        return view("home");
     }
 
     /**

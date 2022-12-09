@@ -27,3 +27,7 @@ $("#allDates").on("change", function() {
 $("#updateCL").click(function() {
     $("#updateList").submit();
 });
+
+$("#logOutLink").click(function() {
+    $("#logout").submit();
+});

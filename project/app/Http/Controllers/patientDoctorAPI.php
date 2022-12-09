@@ -37,7 +37,7 @@ class patientDoctorAPI extends Controller
         'nightMed' => $request->input('nightMed'),
         'doctorID' => $_SESSION['userID']]);
 
-        return view('welcome');
+        return view('patientDoctor');
     }
 
     /**
