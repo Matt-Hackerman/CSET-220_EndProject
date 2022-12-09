@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+session_start();
 class additionalPatientAPI extends Controller
 {
     /**
@@ -33,7 +33,7 @@ class additionalPatientAPI extends Controller
         DB::table('patient')
             ->where('patientID', $request->input('patientID'))
             ->update(['admissionDate' => $request->input('admissionDate')]);
-        return view("welcome");
+        return view("home");
     }
 
     /**

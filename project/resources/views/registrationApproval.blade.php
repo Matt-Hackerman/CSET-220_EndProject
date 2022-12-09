@@ -97,76 +97,31 @@
                 <?php if($_SESSION['role'] == "admin") {?><li><a href="/payment">Payment</a></li><?php } ?>
                 <form id="logout" action="/api/logout" method="POST">
                     <button type="submit">Logout</button>
-               </form>
+                </form>
             </ul>
         </header>
-        <?php $test = $_SESSION['employeeSearch'] ?>
-        <form action="/api/emp_search" method="POST">
-        <div class="text">
-            <div>
-                <label for="emp_id">Emp ID</label>
-                <input id="search" type="text" name="empID">
-            </div>
-            <?php if($_SESSION["role"] == "admin") { ?>
-
-            <div>
-                <label for="New_Salary">New Salary</label>
-                <select type="text" name="newSalary">
-                    <option value="1">60000</option>
-                    <option value="2">80000</option>
-                    <option value="3">100000</option>
-                    <option value="4">120000</option>
-                </select>
-            </div>
-            <?php } ?>
-        </div>
         <table>
             <tr>
-                <th>ID</th>
                 <th>Name</th>
                 <th>Role</th>
-                <th>Salary</th>
+                <th>Approval</th>
+                <th>Submit</th>
             </tr>
-            <?php for($x=0;$x<count($_SESSION['employeeSearch']);$x++){?>
-            <tr class="info">
-                <td><?php echo $_SESSION['employeeSearch'][$x]->ID?></td>
-                <td><?php echo $_SESSION['employeeSearch'][$x]->name?></td>
-                <td><?php echo $_SESSION['employeeSearch'][$x]->role?></td>
-                <td><?php echo $_SESSION['employeeSearch'][$x]->salary?></td>
-            </tr>
-            <?php } ?>
+                <?php for($i=0;$i<count($_SESSION['approval']);$i++){ ?>
+                    <form action="/api/registrationApproval" method="POST">
+                    <input type="hidden" name="ID" value="<?php echo $_SESSION['approval'][$i]->ID ?>">
+                    <tr>
+                        <td><?php echo $_SESSION['approval'][$i]->name ?></td>
+                        <td><?php echo $_SESSION['approval'][$i]->role ?></td>
+                        <td> <div> Yes<input value="Approved" name="approval" type="radio"> </div> <div>No<input value="Denied" name="approval" type="radio"></div></td>
+                        <td><input class="submit" type="submit"></td>
+                    </tr>
+                </form>
+                <?php } ?>
         </table>
-        <div class="click">
-            <?php if($_SESSION["role"] == "admin") { ?>
-                <input value="Ok" class="submit" type="submit">  
-            <?php } ?>
-            <a href="home">
-                <button type="button">Cancel</button>
-            </a>
-        </div>
-    </form>
-    <script src="../homePage.js"></script>
+        <script src="../homePage.js"></script>
     </body>
-    <script>
-        search = document.getElementById('search');
-        var test = JSON.parse('<?php echo json_encode($test) ?>');
-        rows = document.querySelectorAll(".info");
-        console.log(rows);
-        search.addEventListener("input", e => {
-            const value = e.target.value;
-            for(x=0;x<test.length;x++){
-                const vis = test[x].ID.toLowerCase().includes(value.toLowerCase()); 
-                if(vis==false){
-                    rows[x].style.display = "none";
-                }
-                else{
-                    rows[x].style.display = "table-row";
-                }
-            };
-            console.log("\n");
-        });
-    </script>
-        <?php } else { ?>
+    <?php } else { ?>
         <body>
             <header class="header">
                 <ul>
@@ -180,7 +135,7 @@
                     <?php if($_SESSION['role'] == "admin") {?><li><a href="/payment">Payment</a></li><?php } ?>
                     <form id="logout" action="/api/logout" method="POST">
                         <button type="submit">Logout</button>
-                   </form>
+                    </form>
                 </ul>
             </header>
             <h2>Missing Access Level</h1>

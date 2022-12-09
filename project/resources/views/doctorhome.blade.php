@@ -8,8 +8,10 @@
 
     <body> 
         <?php if($_SESSION["accessLevel"] == 4) { ?>
+
             <div class="checkListTable">
                 <h1>Previous Appointments</h1>
+
                 <table>
                     <tr>
                         <th>Patient</th>
@@ -37,6 +39,12 @@
                                 <td><?php echo $_SESSION["oldAppointments"][$i]->morningMed ?></td>
                                 <td><?php echo $_SESSION["oldAppointments"][$i]->afternoonMed ?></td>
                                 <td><?php echo $_SESSION["oldAppointments"][$i]->nightMed ?></td>
+
+                                <form action="/api/newPage" method="POST">
+                                    <input name="patientID" type="hidden" value="<?php echo $_SESSION["oldAppointments"][$i]->patientID ?>">
+                                    <td><input type="submit" value="View"></td>
+                                </form>
+
                             </tr>
                         <?php } ?>
                     <?php } ?>
@@ -46,7 +54,9 @@
             <div>Date: <?php echo date("Y-m-d"); ?></div><br>
 
             <div class="checkListTable">
+
                 <h1>Appointments</h1>
+
                 <table>
                     <tr>
                         <th>Patient</th>
@@ -69,5 +79,6 @@
             </div>
         <?php } ?>
         <script src="../homePage.js"></script>
+        <script src="../doctorStuff.js"></script>
     </body>
 </html>

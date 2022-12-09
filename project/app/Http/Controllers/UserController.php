@@ -136,6 +136,7 @@ class UserController extends Controller
 
     public function doctorHome() {
         $oldAppoint = DB::select("
+
             SELECT CONCAT(patient.f_Name, \" \", patient.l_Name) as name, appointmentDate, prescription.comment, morningMed, 
             afternoonMed, nightMed 
             FROM prescription 
@@ -159,6 +160,7 @@ class UserController extends Controller
 
         return view("doctorhome");
     }
+
 
     public function familyHome(Request $request) {
         $familyPatientView = DB::select("
@@ -187,5 +189,11 @@ class UserController extends Controller
             }
         }
         return view('patientFMhome');
+    } 
+
+    public function newPage(Request $request) {
+        $_SESSION['pid'] = $request->input('patientID');
+        return view('patientDoctor');
+
     }
 }

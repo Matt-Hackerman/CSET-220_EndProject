@@ -77,14 +77,14 @@
             border-style: none;
         }
     </style>
-    <header>
-
-    </header>
+    <head>
+        <link rel="stylesheet" href="../homePage.css">
+    </head>
     <?php if($_SESSION["accessLevel"] == 4) { ?>
     <body>
-        
         <h2>Past Prescriptions</h2>
-        <?php $test = $_SESSION['prescription'] ?>
+        <?php $test = DB::select('select * from prescription where patientID = "'.$_SESSION['pid'].'" and doctorID = "'.$_SESSION['userID'].'"');?>
+        <?php $test2 = DB::select('select appointmentDate from doctorappointments where patientID = "'.$_SESSION['pid'].'" and doctorID = "'.$_SESSION['userID'].'"');?>
         <table>
             <tr>
                 <th>Date</th>
@@ -93,7 +93,7 @@
                 <th>Afternoon Med</th>
                 <th>Night Med</th>
             </tr>
-            <?php if(count($_SESSION['prescription']) == 0) {?>
+            <?php if(count($test) == 0) {?>
                 <tr>
                     <td>None</td>
                     <td>None</td>
@@ -102,19 +102,19 @@
                     <td>None</td>
                 </tr>
             <?php } else {?>
-                <?php for($x=0;$x<count($_SESSION['prescription']);$x++){?>
+                <?php for($x=0;$x<count($test);$x++){?>
                 <tr class="info">
-                    <td><?php echo $_SESSION['prescription'][$x]->date ?></td>
-                    <td><?php echo $_SESSION['prescription'][$x]->comment ?></td>
-                    <td><?php echo $_SESSION['prescription'][$x]->morningMed ?></td>
-                    <td><?php echo $_SESSION['prescription'][$x]->afternoonMed ?></td>
-                    <td><?php echo $_SESSION['prescription'][$x]->nightMed ?></td>
+                    <td><?php echo $test[$x]->date ?></td>
+                    <td><?php echo $test[$x]->comment ?></td>
+                    <td><?php echo $test[$x]->morningMed ?></td>
+                    <td><?php echo $test[$x]->afternoonMed ?></td>
+                    <td><?php echo $test[$x]->nightMed ?></td>
                 </tr>
                 <?php } ?>
             <?php } ?>
         </table>
         <br>
-        <form action="/api/prescription" method="POST">
+        <form action="/api/patientDoctor" method="POST">
             <h2>New prescription</h2>
             <br>
             <table>
@@ -125,19 +125,27 @@
                     <th>Night Med</th>
                 </tr>
                 <tr>
-                    <td><input name="comment" placeholder="Comment" type="text"></td>
-                    <td><input name="morningMed" placeholder="Morning Med" type="text"></td>
-                    <td><input name="afternoonMed" placeholder="Afternoon Med" type="text"></td>
-                    <td><input name="nightMed" placeholder="Night Med" type="text"></td>
+                    <td><input name="comment" placeholder="Comment" type="text" required></td>
+                    <td><input name="morningMed" placeholder="Morning Med" type="text" required></td>
+                    <td><input name="afternoonMed" placeholder="Afternoon Med" type="text" required></td>
+                    <td><input name="nightMed" placeholder="Night Med" type="text" required></td>
                 </tr>
             </table>
             <div class="click">
-                <input value="Ok" class="submit" type="submit">  
-                <a href="">
-                    <button>Cancel</button>
+                <?php $check = false; for($i=0;$i<count($test2);$i++){
+                    if($test2[$i]->appointmentDate == date('Y-m-d')){
+                        $check = true;
+                    }
+                } ?>
+                <?php if($check == true){ ?>
+                    <input value="Ok" class="submit" type="submit">
+                <?php } ?>
+                <a href="javascript:history.back()">
+                    <button type="button">Cancel</button>
                 </a>
             </div>
         </form>
+        <script src="../homePage.js"></script>
     </body>
     <script>
         search = document.getElementById('search');
@@ -161,6 +169,7 @@
     <?php } else { ?>
         <body>
             <h2>Missing Access Level</h1>
+            <script src="../homePage.js"></script>
         </body>
     <?php } ?>
 </html>

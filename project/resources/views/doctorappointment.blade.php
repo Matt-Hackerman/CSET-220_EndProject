@@ -47,9 +47,25 @@
   }
 </style>
 <head>
+  <link rel="stylesheet" href="../homePage.css">
 </head>
-{{-- <?php if($_SESSION["role"] == 5) { ?> --}}
+<?php if($_SESSION["role"] == 5) { ?>
 <body>
+  <header class="header">
+    <ul>
+        <li><a href="/home">Home</a></li>
+        <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/additionalPatient">Additional Patients</a></li><?php } ?>
+        <?php if($_SESSION['accessLevel'] > 2) {?><li><a href="/patientSearch">Patients</a></li><?php } ?>
+        <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/emp_search">Employees</a></li><?php } ?>
+        <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/registrationApproval">Approval</a></li><?php } ?>
+        <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/newroster">newRoster</a></li><?php } ?>
+        <li><a href="/roster">Roster</a></li>
+        <?php if($_SESSION['role'] == "admin") {?><li><a href="/payment">Payment</a></li><?php } ?>
+        <form id="logout" action="/api/logout" method="POST">
+          <button type="submit">Logout</button>
+        </form>
+    </ul>
+</header>
   <?php $test = $_SESSION['patients'] ?>
   <?php $test2 = $_SESSION['doctorRoster'] ?>
   <h1>Doctor's Appointment</h1>
@@ -90,6 +106,7 @@
       <button type="submit" class="submit">Cancel</button>
     </div>
   </form>
+  <script src="../homePage.js"></script>
 </body>
 
 <script>
@@ -110,9 +127,23 @@
     }
   });
 </script>
-    {{-- <?php } else { ?>
+    <?php } else { ?>
         <body>
+              <header class="header">
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/additionalPatient">Additional Patients</a></li><?php } ?>
+                    <?php if($_SESSION['accessLevel'] > 2) {?><li><a href="/patientSearch">Patients</a></li><?php } ?>
+                    <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/emp_search">Employees</a></li><?php } ?>
+                    <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/registrationApproval">Approval</a></li><?php } ?>
+                    <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/newroster">newRoster</a></li><?php } ?>
+                    <li><a href="/roster">Roster</a></li>
+                    <?php if($_SESSION['role'] == "admin") {?><li><a href="/payment">Payment</a></li><?php } ?>
+                    <a href="#" id="logOutLink">Logout</a>
+                </ul>
+            </header>
             <h2>Missing Access Level</h1>
+            <script src="../homePage.js"></script>
         </body>
-    <?php } ?> --}}
+    <?php } ?>
 </html>

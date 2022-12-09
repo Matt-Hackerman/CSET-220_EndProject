@@ -25,3 +25,14 @@
     margin: 0 auto;
     padding: 10px;
 }
+
+.header ul {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+

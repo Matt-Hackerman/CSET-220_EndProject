@@ -1,8 +1,5 @@
 <html>
     <style>
-    body{
-        padding-top: 5%;
-    }
     .grid1{
         display: grid;
         grid-template-columns: repeat(8, 1fr);
@@ -35,13 +32,30 @@
         margin-right: auto; 
 }
     </style>
+    <head>
+        <link rel="stylesheet" href="../homePage.css">
+    </head>
     <body>
-    <div class="grid1">
-    <h2>Date</h2>
-     <input type="date" name="date" value="<?php echo date('Y-m-d');?>" readonly>
-    </div>
+        <header class="header">
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/additionalPatient">Additional Patients</a></li><?php } ?>
+                <?php if($_SESSION['accessLevel'] > 2) {?><li><a href="/patientSearch">Patients</a></li><?php } ?>
+                <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/emp_search">Employees</a></li><?php } ?>
+                <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/registrationApproval">Approval</a></li><?php } ?>
+                <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/newroster">newRoster</a></li><?php } ?>
+                <li><a href="/roster">Roster</a></li>
+                <?php if($_SESSION['role'] == "admin") {?><li><a href="/payment">Payment</a></li><?php } ?>
+                <form id="logout" action="/api/logout" method="POST">
+                    <button type="submit">Logout</button>
+                </form>
+            </ul>
+        </header>
+        <div class="grid1">
+            <h2>Date</h2>
+            <input type="date" name="date" value="<?php echo date('Y-m-d');?>" readonly>
+        </div>
     <table>
-        
         <tr>
             <th>Supervisor</th>
             <th>Doctor</th>
@@ -72,6 +86,7 @@
 
         
       </table>
+      <script src="../homePage.js"></script>
     </body>
 
 </html>

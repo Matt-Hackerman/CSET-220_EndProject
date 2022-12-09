@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+session_start();
 class employeeSearchAPI extends Controller
 {
     /**
@@ -47,24 +47,28 @@ class employeeSearchAPI extends Controller
             DB::table('admin')
             ->where('adminID', $request->input('empID'))
             ->update(['salaryID' => $request->input('newSalary')]);
-            return view("welcome");
+            $this->index();
+            return view("Employee_search");
         } else if(substr($id, 0, 2) == "CG"){
             DB::table('caregiver')
             ->where('caregiverID', $request->input('empID'))
             ->update(['salaryID' => $request->input('newSalary')]);
-            return view("welcome");
+            $this->index();
+            return view("Employee_search");
         } else if(substr($id, 0, 2) == "SV"){
             DB::table('supervisor')
             ->where('superID', $request->input('empID'))
             ->update(['salaryID' => $request->input('newSalary')]);
-            return view("welcome");
+            $this->index();
+            return view("Employee_search");
         } else if(substr($id, 0, 2) == "DR"){
             DB::table('doctor')
             ->where('doctorID', $request->input('empID'))
             ->update(['salaryID' => $request->input('newSalary')]);
-            return view("welcome");
+            $this->index();
+            return view("Employee_search");
         }
-        return view('welcome');
+        return view('Employee_search');
     }
 
     /**

@@ -14,6 +14,7 @@ use App\Http\Controllers\newroster;
 use App\Http\Controllers\patientDoctorAPI;
 use App\Http\Controllers\patientSearchAPI;
 use App\Http\Controllers\PaymentAPI;
+use App\Http\Controllers\registrationApprovalAPI;
 use App\Http\Controllers\roleAPI;
 use App\Http\Controllers\RosterAPI;
 
@@ -42,6 +43,8 @@ Route::get('/home', function() {
 });
 
 Route::get('/patienthome', [UserController::class, 'dates']);
+
+Route::get('/registrationApproval', [registrationApprovalAPI::class, 'index']);
 
 Route::get('/caregiverhome', [UserController::class, 'patientCare']);
 

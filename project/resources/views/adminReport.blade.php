@@ -35,7 +35,10 @@
         margin-right: auto; 
 }
     </style>
-    {{-- <?php if($_SESSION["accessLevel"] == "5") { ?> --}}
+    <head>
+        <link rel="stylesheet" href="../homePage.css">
+    </head>
+    <?php if($_SESSION["accessLevel"] == "5") { ?>
     <body>
     <div class="grid1">
         <h2>Date</h2>
@@ -86,10 +89,11 @@
 
         
       </table>
+      <script src="../homePage.js"></script>
     </body>
-          {{-- <?php } else { ?>
+          <?php } else { ?>
         <body>
             <h2>Missing Access Level</h1>
         </body>
-    <?php } ?> --}}
+    <?php } ?>
 </html>
