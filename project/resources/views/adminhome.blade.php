@@ -8,7 +8,6 @@
 
     <body> 
         <?php if($_SESSION["accessLevel"] == 5) { ?>
-            
         <?php } ?>
         <script src="../homePage.js"></script>
     </body>

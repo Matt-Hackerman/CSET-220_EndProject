@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\In;
 use Symfony\Component\Console\Input\Input;
-
+session_start();
 class newroster extends Controller
 {
     /**

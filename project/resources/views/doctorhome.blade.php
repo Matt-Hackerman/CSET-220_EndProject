@@ -8,6 +8,7 @@
 
     <body> 
         <?php if($_SESSION["accessLevel"] == 4) { ?>
+            
             <div class="checkListTable">
                 <table>
                     <tr>
