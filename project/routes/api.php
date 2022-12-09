@@ -37,7 +37,11 @@ Route::post('/previous_day', [UserController::class, 'patientCheckList']);
 
 Route::post('/updateCheckList', [UserController::class, 'updateCheckList']);
 
+
+Route::post('/findFamilyPatient', [UserController::class, 'familyHome']);
+
 Route::post('/newPage', [UserController::class, 'newPage']);
+
 
 Route::resource('doctorappointment', DoctorAppointmentAPI::class);
 Route::resource('additionalPatient', additionalPatientAPI::class);
