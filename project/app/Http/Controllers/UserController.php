@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
-session_start();
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+if(!isset($_SESSION)){
+    session_start();
+}
 
 class UserController extends Controller
 {
@@ -30,6 +32,7 @@ class UserController extends Controller
                 $_SESSION["currentUser"] = $user->name;
                 $_SESSION["accessLevel"] = $access[0]->accessLevel;
                 $_SESSION["role"] = $access[0]->role;
+                $_SESSION["familyViewCL"] = [];
                 $this->dates();
                 return view('home');
             }
@@ -158,6 +161,31 @@ class UserController extends Controller
     }
 
     public function familyHome(Request $request) {
-        
+        $familyPatientView = DB::select("
+            SELECT patientID, familyCode FROM patient
+        ");
+
+        $patientID = $request->input('patientID');
+        $patientFC = $request->input('familyCode');
+
+        foreach ($familyPatientView as $patient) {
+            if ($patient->patientID == $patientID && $patient->familyCode == $patientFC) {
+                $familyViewList = DB::select("
+                    SELECT CONCAT(doctor.f_Name, \" \", doctor.l_Name) as doctor, patientchecklist.doctorAppoint, 
+                    CONCAT(caregiver.f_Name, \" \", caregiver.l_Name) as caregiver, patientchecklist.morningMeds, 
+                    patientchecklist.afternoonMeds, patientchecklist.nightMeds, patientchecklist.breakfast, 
+                    patientchecklist.lunch, patientchecklist.dinner 
+                    FROM patientchecklist 
+                    JOIN patient ON patient.patientID = patientchecklist.patientID 
+                    JOIN doctor ON patientchecklist.doctorID = doctor.doctorID 
+                    JOIN caregiver ON patientchecklist.caregiverID = caregiver.caregiverID 
+                    WHERE patientchecklist.patientID = \"" . $patientID . "\"" . " 
+                    AND patientchecklist.date = \"" . date("Y-m-d") . "\""
+                );
+
+                $_SESSION["familyViewCL"] = $familyViewList;
+            }
+        }
+        return view('patientFMhome');
     }
 }
