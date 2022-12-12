@@ -21,8 +21,8 @@
                     <button class="" type="submit" name="login">Login</button> 
                 </div>
                 <div class="cancel">
-                    <a href="Homepage.html">
-                        <button>Cancel</button>
+                    <a href="/">
+                        <button type="button">Cancel</button>
                     </a>
                 </div>
             </div>

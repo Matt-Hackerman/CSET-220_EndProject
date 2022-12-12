@@ -43,35 +43,42 @@ class registrationApprovalAPI extends Controller
             $test = DB::table('admin')
             ->where('adminID', $id)
             ->update(['admissionStatus' => $request->input('approval')]);
-            return view("registrationApproval");
         } else if(substr($id, 0, 2) == "CG"){
             $test = DB::table('caregiver')
             ->where('caregiverID', $id)
             ->update(['admissionStatus' => $request->input('approval')]);
-            return view("registrationApproval");
         } else if(substr($id, 0, 2) == "SV"){
             $test = DB::table('supervisor')
             ->where('superID', $id)
             ->update(['admissionStatus' => $request->input('approval')]);
-            return view("registrationApproval");
         } else if(substr($id, 0, 2) == "DR"){
             $test = DB::table('doctor')
             ->where('doctorID', $id)
             ->update(['admissionStatus' => $request->input('approval')]);
-            return view("registrationApproval");
         }
         else if(substr($id, 0, 2) == "FM"){
             $test = DB::table('patientfm')
             ->where('patient_FM_ID', $id)
             ->update(['admissionStatus' => $request->input('approval')]);
-            return view("registrationApproval");
         }
         else if(substr($id, 0, 2) == "PT"){
             $test = DB::table('patient')
             ->where('patientID', $id)
             ->update(['admissionStatus' => $request->input('approval')]);
-            return view("registrationApproval");
         }
+
+        $_SESSION['approval'] = DB::select('select patientID as ID, concat(f_Name, " ", l_Name) as name, role from patient join role on patient.roleID=role.roleID where admissionStatus = "Pending"
+        union
+        select doctorID as ID, concat(f_Name, " ", l_Name) as name, role from doctor join role on doctor.roleID=role.roleID where admissionStatus = "Pending"
+        union
+        select superID as ID, concat(f_Name, " ", l_Name) as name, role from supervisor join role on supervisor.roleID=role.roleID where admissionStatus = "Pending"
+        union
+        select caregiverID as ID, concat(f_Name, " ", l_Name) as name, role from caregiver join role on caregiver.roleID=role.roleID where admissionStatus = "Pending"
+        union
+        select patient_FM_ID as ID, concat(f_Name, " ", l_Name) as name, role from patientfm join role on patientfm.roleID=role.roleID where admissionStatus = "Pending"
+        union
+        select adminID as ID, concat(f_Name, " ", l_Name) as name, role from admin join role on admin.roleID=role.roleID where admissionStatus = "Pending"');
+        return view("registrationApproval");
     }
 
     /**

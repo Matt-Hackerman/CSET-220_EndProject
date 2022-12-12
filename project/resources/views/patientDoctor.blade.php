@@ -140,9 +140,6 @@
                 <?php if($check == true){ ?>
                     <input value="Ok" class="submit" type="submit">
                 <?php } ?>
-                <a href="javascript:history.back()">
-                    <button type="button">Cancel</button>
-                </a>
             </div>
         </form>
         <script src="../homePage.js"></script>

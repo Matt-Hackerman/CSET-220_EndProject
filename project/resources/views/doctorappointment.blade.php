@@ -49,7 +49,7 @@
 <head>
   <link rel="stylesheet" href="../homePage.css">
 </head>
-<?php if($_SESSION["role"] == 5) { ?>
+<?php if($_SESSION["accessLevel"] == 5) { ?>
 <body>
   <header class="header">
     <ul>
@@ -59,6 +59,7 @@
         <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/emp_search">Employees</a></li><?php } ?>
         <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/registrationApproval">Approval</a></li><?php } ?>
         <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/newroster">newRoster</a></li><?php } ?>
+        <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/doctorappointment">Doctor Appointments</a></li><?php } ?>
         <li><a href="/roster">Roster</a></li>
         <?php if($_SESSION['role'] == "admin") {?><li><a href="/payment">Payment</a></li><?php } ?>
         <form id="logout" action="/api/logout" method="POST">
@@ -86,7 +87,7 @@
     <div class="parent" style=display:inline-block>
       <div class="child">
         <div class=button2>Date</div>
-        <input id="date" value="<?php echo date('Y-m-d') ?>" name="appointmentDate" type="date" required>
+        <input id="date" min="<?php echo date('Y-m-d') ?>" value="<?php echo date('Y-m-d') ?>" name="appointmentDate" type="date" required>
       </div>
     </div>
     <br>
@@ -94,8 +95,8 @@
       <div class="child">
         <div class=button2>Doctor</div>
         <select name="doctorID" id="" required>
-          <?php for($i=0;$i<count($_SESSION['doctors']);$i++){?>
-            <option class="options" value="<?php echo $_SESSION['doctors'][$i]->doctorID;?>"><?php echo $_SESSION['doctors'][$i]->name;?></option>
+          <?php for($i=0;$i<count($_SESSION['doctorRoster']);$i++){?>
+            <option class="options" value="<?php echo $_SESSION['doctorRoster'][$i]->doctorID;?>"><?php echo $_SESSION['doctorRoster'][$i]->name;?></option>
           <?php } ?>
         </select>
       </div>
@@ -137,6 +138,7 @@
                     <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/emp_search">Employees</a></li><?php } ?>
                     <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/registrationApproval">Approval</a></li><?php } ?>
                     <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/newroster">newRoster</a></li><?php } ?>
+                    <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/doctorappointment">Doctor Appointments</a></li><?php } ?>
                     <li><a href="/roster">Roster</a></li>
                     <?php if($_SESSION['role'] == "admin") {?><li><a href="/payment">Payment</a></li><?php } ?>
                     <a href="#" id="logOutLink">Logout</a>

@@ -47,6 +47,15 @@ input{
 .othertest{
     visibility:hidden
 }
+.submit {
+  margin-top: 1rem;
+  background-color: #2E8B57;
+  height: 50px;
+  width: 100px;
+  cursor:pointer;
+  color:white;
+  border-style: none;
+}
 </style>
     <body>
 <h1>
@@ -71,43 +80,43 @@ input{
 <p><br></p>
 <div class="parent">
   <div class="child">
-  <div class=button2>First Name</div> <input name="f_name"></input>
+  <div class=button2>First Name</div> <input type="f_name" name="f_name">
   </div>
   <div class="child">
-    <div class=othertest id=patientonly><div class=button2>Family Code (For Patient Family Member) </div><input></input></div>
-  </div>
-</div>
-<p><br></p>
-<div class="parent">
-  <div class="child">
-    <div class=button2>Last Name</div> <input name="l_name"></input>
-  </div>
-  <div class="child">
-  <div class=othertest id=patientonly2><div class=button2>Emergency Contact</div> <input></input></div>
+    <div class=othertest id=patientonly><div class=button2>Family Code (For Patient Family Member) </div><input name="familyCode" type="text"></div>
   </div>
 </div>
 <p><br></p>
 <div class="parent">
   <div class="child">
-  <div class=button2>Email</div><input name="email"></input>
+    <div class=button2>Last Name</div> <input type="text" name="l_name">
   </div>
   <div class="child">
-  <div class=othertest id=patientonly3><div class=button2>Relation to Emergency Contact</div> <input></input></div>
+  <div class=othertest id=patientonly2><div class=button2>Emergency Contact</div> <input name="emergencyContact"></div>
   </div>
 </div>
 <p><br></p>
 <div class="parent">
   <div class="child">
-  <div class=button2>Phone</div> <input name="phone"></input>
+  <div class=button2>Email</div><input type="email" name="email">
+  </div>
+  <div class="child">
+  <div class=othertest id=patientonly3><div class=button2>Relation to Emergency Contact</div> <input name="contactRelationship" type="text"></div>
+  </div>
+</div>
+<p><br></p>
+<div class="parent">
+  <div class="child">
+  <div class=button2>Phone</div> <input type="text" name="phone">
   </div>
 </div>
 <p><br></p>
 <div class="parent" style=display:inline-block>
   <div class="child">
-  <div class=button2>Password</div> <input name="password"></input>
+  <div class=button2>Password</div> <input type="password" name="password">
   </div>
-  <input type=submit class="button3" value=Ok>
-<input type=button class=button value=Cancel onclick=location.href="newroster">
+  <input type=submit class="submit" value=Ok>
+  <a href="/"><button type="button" class="submit">Cancel</button></a>
 </div>
 </form>
 <script src="../homePage.js"></script>

@@ -56,6 +56,7 @@
                 <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/emp_search">Employees</a></li><?php } ?>
                 <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/registrationApproval">Approval</a></li><?php } ?>
                 <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/newroster">newRoster</a></li><?php } ?>
+                <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/doctorappointment">Doctor Appointments</a></li><?php } ?>
                 <li><a href="/roster">Roster</a></li>
                 <?php if($_SESSION['role'] == "admin") {?><li><a href="/payment">Payment</a></li><?php } ?>
                 <form id="logout" action="/api/logout" method="POST">
@@ -63,6 +64,7 @@
                 </form>
             </ul>
         </header>
+        <br>
     <?php $test = $_SESSION['patientSearch'] ?>
     <div class="grid1">
     </div>
@@ -131,6 +133,7 @@
                     <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/emp_search">Employees</a></li><?php } ?>
                     <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/registrationApproval">Approval</a></li><?php } ?>
                     <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/newroster">newRoster</a></li><?php } ?>
+                    <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/doctorappointment">Doctor Appointments</a></li><?php } ?>
                     <li><a href="/roster">Roster</a></li>
                     <?php if($_SESSION['role'] == "admin") {?><li><a href="/payment">Payment</a></li><?php } ?>
                     <form id="logout" action="/api/logout" method="POST">

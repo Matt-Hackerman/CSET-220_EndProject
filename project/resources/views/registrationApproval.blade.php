@@ -1,5 +1,9 @@
 <html>
     <style>
+        .centerH1 {
+            text-align: center;
+            padding: 2rem;
+        }
         table {
             overflow-y: scroll;
             max-height: 300px;
@@ -20,13 +24,13 @@
         th {
             background-color: lightgray;
         }
-        input{
+        .input{
             margin-left: 10px;
             border: 7px solid blue;
             width: 250px;
             height: 50px;
         }
-        button{
+        .button{
             margin-top: 1rem;
             background-color: #2E8B57;
             height: 50px;
@@ -51,6 +55,14 @@
             display: inline-block;
             width: 50px;
             
+        }
+        .flex {
+            display: flex;
+            width: fit-content;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
         }
         .text{
             display: flex;
@@ -93,6 +105,7 @@
                 <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/emp_search">Employees</a></li><?php } ?>
                 <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/registrationApproval">Approval</a></li><?php } ?>
                 <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/newroster">newRoster</a></li><?php } ?>
+                <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/doctorappointment">Doctor Appointments</a></li><?php } ?>
                 <li><a href="/roster">Roster</a></li>
                 <?php if($_SESSION['role'] == "admin") {?><li><a href="/payment">Payment</a></li><?php } ?>
                 <form id="logout" action="/api/logout" method="POST">
@@ -100,6 +113,8 @@
                 </form>
             </ul>
         </header>
+        
+        <h1 class="centerH1">Approval</h1>
         <table>
             <tr>
                 <th>Name</th>
@@ -113,7 +128,18 @@
                     <tr>
                         <td><?php echo $_SESSION['approval'][$i]->name ?></td>
                         <td><?php echo $_SESSION['approval'][$i]->role ?></td>
-                        <td> <div> Yes<input value="Approved" name="approval" type="radio"> </div> <div>No<input value="Denied" name="approval" type="radio"></div></td>
+                        <td>
+                            <div class="flex">
+                                <div class="flex">
+                                    <p>Yes</p>
+                                    <input value="Approved" name="approval" type="radio" required>
+                                </div>
+                                <div class="flex">
+                                    <p>No</p>
+                                    <input value="Denied" name="approval" type="radio" required>
+                                </div>
+                            </div>
+                        </td>
                         <td><input class="submit" type="submit"></td>
                     </tr>
                 </form>
@@ -131,6 +157,7 @@
                     <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/emp_search">Employees</a></li><?php } ?>
                     <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/registrationApproval">Approval</a></li><?php } ?>
                     <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/newroster">newRoster</a></li><?php } ?>
+                    <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/doctorappointment">Doctor Appointments</a></li><?php } ?>
                     <li><a href="/roster">Roster</a></li>
                     <?php if($_SESSION['role'] == "admin") {?><li><a href="/payment">Payment</a></li><?php } ?>
                     <form id="logout" action="/api/logout" method="POST">

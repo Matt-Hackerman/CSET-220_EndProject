@@ -137,7 +137,7 @@ class UserController extends Controller
     public function doctorHome() {
         $oldAppoint = DB::select("
 
-            SELECT CONCAT(patient.f_Name, \" \", patient.l_Name) as name, appointmentDate, prescription.comment, morningMed, 
+            SELECT patient.patientID, CONCAT(patient.f_Name, \" \", patient.l_Name) as name, appointmentDate, prescription.comment, morningMed, 
             afternoonMed, nightMed 
             FROM prescription 
             JOIN patient ON prescription.patientID = patient.patientID 
