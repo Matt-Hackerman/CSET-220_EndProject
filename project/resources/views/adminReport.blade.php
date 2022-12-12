@@ -1,8 +1,5 @@
 <html>
     <style>
-    body{
-        padding-top: 5%;
-    }
     .grid1{
         display: grid;
         grid-template-columns: repeat(8, 1fr);
@@ -44,6 +41,8 @@
         <h2>Date</h2>
         <input type="date" name="date" value="<?php echo date('Y-m-d');?>" readonly>
     </div>
+    <br>
+    <br>
     <table>
         <tr>
             <th>Patient Name</th>

@@ -14,14 +14,13 @@ use App\Http\Controllers\registercontrollerAPI;
     width: 50%;
 }  
 .button{
-    background-color: #2E8B57;
+  background-color: #2E8B57;
   padding: 22px 48px;
   text-align: center;
   display: inline-block;
   margin: 4px 2px;
   cursor:pointer;
-color:white;
- 
+  color:white;
 }
 .button2{
 border-radius: 0% 8% 0% 0%;

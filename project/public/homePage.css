@@ -26,6 +26,14 @@
     padding: 10px;
 }
 
+.header {
+    display: flex;
+    align-items:center;
+    padding: 0 1rem;
+    border-bottom: 1px solid black;
+    height: 3rem;
+}
+
 .header ul {
     display: flex;
     gap: 1rem;
