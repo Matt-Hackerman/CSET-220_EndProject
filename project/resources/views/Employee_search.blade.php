@@ -26,14 +26,15 @@
             width: 250px;
             height: 50px;
         }
-        button{
-            margin-top: 1rem;
+        .button{
             background-color: #2E8B57;
-            height: 50px;
-            width: 100px;
-            cursor:pointer;
-            color:white;
-            border-style: none;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            width: 150px;
         }
         .click{
             display: flex;
@@ -49,7 +50,7 @@
             text-align: center;
             text-decoration: none;
             display: inline-block;
-            width: 50px;
+            width: 100px;
             
         }
         .text{
@@ -93,6 +94,7 @@
                 <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/emp_search">Employees</a></li><?php } ?>
                 <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/registrationApproval">Approval</a></li><?php } ?>
                 <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/newroster">newRoster</a></li><?php } ?>
+                <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/doctorappointment">Doctor Appointments</a></li><?php } ?>
                 <li><a href="/roster">Roster</a></li>
                 <?php if($_SESSION['role'] == "admin") {?><li><a href="/payment">Payment</a></li><?php } ?>
                 <form id="logout" action="/api/logout" method="POST">
@@ -102,49 +104,49 @@
         </header>
         <?php $test = $_SESSION['employeeSearch'] ?>
         <form action="/api/emp_search" method="POST">
-        <div class="text">
-            <div>
-                <label for="emp_id">Emp ID</label>
-                <input id="search" type="text" name="empID">
-            </div>
-            <?php if($_SESSION["role"] == "admin") { ?>
+            <div class="text">
+                <div>
+                    <label for="emp_id">Emp ID</label>
+                    <input id="search" type="text" name="empID">
+                </div>
+                <?php if($_SESSION["role"] == "admin") { ?>
 
-            <div>
-                <label for="New_Salary">New Salary</label>
-                <select type="text" name="newSalary">
-                    <option value="1">60000</option>
-                    <option value="2">80000</option>
-                    <option value="3">100000</option>
-                    <option value="4">120000</option>
-                </select>
+                <div>
+                    <label for="New_Salary">New Salary</label>
+                    <select type="text" name="newSalary">
+                        <option value="1">60000</option>
+                        <option value="2">80000</option>
+                        <option value="3">100000</option>
+                        <option value="4">120000</option>
+                    </select>
+                </div>
+                <?php } ?>
             </div>
-            <?php } ?>
-        </div>
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Role</th>
-                <th>Salary</th>
-            </tr>
-            <?php for($x=0;$x<count($_SESSION['employeeSearch']);$x++){?>
-            <tr class="info">
-                <td><?php echo $_SESSION['employeeSearch'][$x]->ID?></td>
-                <td><?php echo $_SESSION['employeeSearch'][$x]->name?></td>
-                <td><?php echo $_SESSION['employeeSearch'][$x]->role?></td>
-                <td><?php echo $_SESSION['employeeSearch'][$x]->salary?></td>
-            </tr>
-            <?php } ?>
-        </table>
-        <div class="click">
-            <?php if($_SESSION["role"] == "admin") { ?>
-                <input value="Ok" class="submit" type="submit">  
-            <?php } ?>
-            <a href="home">
-                <button type="button">Cancel</button>
-            </a>
-        </div>
-    </form>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Salary</th>
+                </tr>
+                <?php for($x=0;$x<count($_SESSION['employeeSearch']);$x++){?>
+                <tr class="info">
+                    <td><?php echo $_SESSION['employeeSearch'][$x]->ID?></td>
+                    <td><?php echo $_SESSION['employeeSearch'][$x]->name?></td>
+                    <td><?php echo $_SESSION['employeeSearch'][$x]->role?></td>
+                    <td><?php echo $_SESSION['employeeSearch'][$x]->salary?></td>
+                </tr>
+                <?php } ?>
+            </table>
+            <div class="click">
+                <?php if($_SESSION["role"] == "admin") { ?>
+                    <input value="Ok" class="submit" type="submit">  
+                <?php } ?>
+                <a href="home">
+                    <button class="submit" type="button">Cancel</button>
+                </a>
+            </div>
+        </form>
     <script src="../homePage.js"></script>
     </body>
     <script>
@@ -176,6 +178,7 @@
                     <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/emp_search">Employees</a></li><?php } ?>
                     <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/registrationApproval">Approval</a></li><?php } ?>
                     <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/newroster">newRoster</a></li><?php } ?>
+                    <?php if($_SESSION['accessLevel'] == 5) {?><li><a href="/doctorappointment">Doctor Appointments</a></li><?php } ?>
                     <li><a href="/roster">Roster</a></li>
                     <?php if($_SESSION['role'] == "admin") {?><li><a href="/payment">Payment</a></li><?php } ?>
                     <form id="logout" action="/api/logout" method="POST">

@@ -45,36 +45,41 @@ class registercontrollerAPI extends Controller
         $superID = "SV" . random_int(100000, 999999);
         $salaryID = 3;
         supervisor::create(['roleID' => $roleID, 'salaryID' => $salaryID, 'superID' => $superID, 'f_name' => $submit['f_name'], 'l_name' => $submit['l_name'], 'email' => $submit['email'], 'phone' => $submit['phone'], 'password' => $submit['password'], 'DOB' => $submit['DOB']]);
+            return view("/login");
         }
         else if($submit['sel']=="Admin"){
             $roleID = 6;
             $superID = "AD" . random_int(100000, 999999);
             $salaryID = 4;
             admin::create(['roleID' => $roleID, 'salaryID' => $salaryID, 'adminID' => $superID, 'f_name' => $submit['f_name'], 'l_name' => $submit['l_name'], 'email' => $submit['email'], 'phone' => $submit['phone'], 'password' => $submit['password'], 'DOB' => $submit['DOB']]);    
+            return view("/login");
         }
         else if($submit['sel']=="Caregiver"){
             $roleID = 3;
             $superID = "CG" . random_int(100000, 999999);
             $salaryID = 4;
-            caregiver::create(['roleID' => $roleID, 'salaryID' => $salaryID, 'caregiverID' => $superID, 'f_name' => $submit['f_name'], 'l_name' => $submit['l_name'], 'email' => $submit['email'], 'phone' => $submit['phone'], 'password' => $submit['password'], 'DOB' => $submit['DOB']]);    
+            caregiver::create(['roleID' => $roleID, 'salaryID' => $salaryID, 'caregiverID' => $superID, 'f_name' => $submit['f_name'], 'l_name' => $submit['l_name'], 'email' => $submit['email'], 'phone' => $submit['phone'], 'password' => $submit['password'], 'DOB' => $submit['DOB']]);  
+            return view("/login");
         }
         else if($submit['sel']=="Doctor"){
             $roleID = 4;
             $superID = "DR" . random_int(100000, 999999);
             $salaryID = 2;
-            doctor::create(['roleID' => $roleID, 'salaryID' => $salaryID, 'doctorID' => $superID, 'f_name' => $submit['f_name'], 'l_name' => $submit['l_name'], 'email' => $submit['email'], 'phone' => $submit['phone'], 'password' => $submit['password'], 'DOB' => $submit['DOB']]);    
+            doctor::create(['roleID' => $roleID, 'salaryID' => $salaryID, 'doctorID' => $superID, 'f_name' => $submit['f_name'], 'l_name' => $submit['l_name'], 'email' => $submit['email'], 'phone' => $submit['phone'], 'password' => $submit['password'], 'DOB' => $submit['DOB']]);  
+            return view("/login");
         }
         else if($submit['sel']=="PatientFM"){
             $roleID = 1;
             $superID = "FM" . random_int(100000, 999999);
-            patientfm::create(['roleID' => $roleID, 'patient_FM_ID' => $superID, 'f_name' => $submit['f_name'], 'l_name' => $submit['l_name'], 'email' => $submit['email'], 'phone' => $submit['phone'], 'password' => $submit['password'], 'DOB' => $submit['DOB']]);    
+            patientfm::create(['roleID' => $roleID, 'patient_FM_ID' => $superID, 'f_name' => $submit['f_name'], 'l_name' => $submit['l_name'], 'email' => $submit['email'], 'phone' => $submit['phone'], 'password' => $submit['password'], 'DOB' => $submit['DOB']]);
+            return view("/login");
         }
         else if($submit['sel']=="Patient"){
             $roleID = 2;
             $superID = "PT" . random_int(100000, 999999);
             patient::create(['roleID' => $roleID, 'patientID' => $superID, 'f_name' => $submit['f_name'], 'l_name' => $submit['l_name'], 'email' => $submit['email'], 'phone' => $submit['phone'], 'password' => $submit['password'], 'DOB' => $submit['DOB'], 'familyCode' => $request->input('familyCode'), 'emergencyContact' => $request->input('emergencyContact'), 'contactRelationship' => $request->input('contactRelationship')]);    
+            return view("/login");
         }
-        return redirect('register');
         
         return view('register');
     }
