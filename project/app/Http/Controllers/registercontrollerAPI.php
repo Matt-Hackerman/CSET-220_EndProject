@@ -35,7 +35,7 @@ class registercontrollerAPI extends Controller
             'sel' => 'required',
             'f_name' => 'required',
             'l_name' => 'required',
-            'email' => 'required',
+            'email' => 'unique:admin|unique:supervisor|unique:caregiver|unique:doctor|unique:patientfm|unique:patient|required',
             'phone' => 'required',
             'password' => 'required',
             'DOB' => 'required',
