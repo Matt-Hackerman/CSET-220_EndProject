@@ -50,9 +50,7 @@ Route::get('/caregiverhome', [UserController::class, 'patientCare']);
 
 Route::get('/doctorhome', [UserController::class, 'doctorHome']);
 
-Route::get('/patientFMhome', function() {
-    return view('patientFMhome');
-});
+Route::get('/patientFMhome', [UserController::class, 'familyLoad']);
 
 Route::get('/additionalPatient', [additionalPatientAPI::class, 'index']);
 

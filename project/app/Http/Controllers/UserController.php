@@ -161,6 +161,10 @@ class UserController extends Controller
         return view("doctorhome");
     }
 
+    public function familyLoad() {
+        $_SESSION["count"] = 0;
+        return view("patientFMhome");
+    }
 
     public function familyHome(Request $request) {
         $familyPatientView = DB::select("
@@ -169,7 +173,6 @@ class UserController extends Controller
 
         $patientID = $request->input('patientID');
         $patientFC = $request->input('familyCode');
-
         foreach ($familyPatientView as $patient) {
             if ($patient->patientID == $patientID && $patient->familyCode == $patientFC) {
                 $familyViewList = DB::select("
@@ -184,7 +187,7 @@ class UserController extends Controller
                     WHERE patientchecklist.patientID = \"" . $patientID . "\"" . " 
                     AND patientchecklist.date = \"" . date("Y-m-d") . "\""
                 );
-
+                $_SESSION["count"] += 1;
                 $_SESSION["familyViewCL"] = $familyViewList;
             }
         }
