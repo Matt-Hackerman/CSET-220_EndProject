@@ -37,7 +37,7 @@
                         <th>Lunch</th>
                         <th>Dinner</th>
                     </tr>
-                    <?php if (count($_SESSION["familyViewCL"]) == 0) { ?>
+                    <?php if ($_SESSION["count"] == 0 ) { ?>
                         <tr>
                             <td></td>
                             <td></td>
@@ -48,6 +48,18 @@
                             <td></td>
                             <td></td>
                             <td></td>
+                        </tr>
+                    <?php } else if ($_SESSION["count"] > 0 && count($_SESSION["familyViewCL"]) == 0 ) { ?>
+                        <tr>
+                            <td>None</td>
+                            <td>Not Done</td>
+                            <td>None</td>
+                            <td>Not Done</td>
+                            <td>Not Done</td>
+                            <td>Not Done</td>
+                            <td>Not Done</td>
+                            <td>Not Done</td>
+                            <td>Not Done</td>
                         </tr>
                     <?php } else { ?>
                     <tr>

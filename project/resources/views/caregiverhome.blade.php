@@ -19,7 +19,7 @@
                         <th>Breakfast</th>
                         <th>Lunch</th>
                         <th>Dinner</th>
-                        <th></th>
+                        <th>Submit</th>
                     </tr>
                     <?php for ($i = 0; $i < count($_SESSION["patientList"]); $i++) { ?>
                     <form id="updateList" action="/api/updateCheckList" method="POST">

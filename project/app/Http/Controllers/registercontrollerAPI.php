@@ -41,10 +41,10 @@ class registercontrollerAPI extends Controller
             'DOB' => 'required',
         ]);
         if($submit['sel']=="Supervisor"){
-        $roleID = 5;
-        $superID = "SV" . random_int(100000, 999999);
-        $salaryID = 3;
-        supervisor::create(['roleID' => $roleID, 'salaryID' => $salaryID, 'superID' => $superID, 'f_name' => $submit['f_name'], 'l_name' => $submit['l_name'], 'email' => $submit['email'], 'phone' => $submit['phone'], 'password' => $submit['password'], 'DOB' => $submit['DOB']]);
+            $roleID = 5;
+            $superID = "SV" . random_int(100000, 999999);
+            $salaryID = 3;
+            supervisor::create(['roleID' => $roleID, 'salaryID' => $salaryID, 'superID' => $superID, 'f_name' => $submit['f_name'], 'l_name' => $submit['l_name'], 'email' => $submit['email'], 'phone' => $submit['phone'], 'password' => $submit['password'], 'DOB' => $submit['DOB']]);
             return view("/login");
         }
         else if($submit['sel']=="Admin"){
@@ -77,7 +77,11 @@ class registercontrollerAPI extends Controller
         else if($submit['sel']=="Patient"){
             $roleID = 2;
             $superID = "PT" . random_int(100000, 999999);
-            patient::create(['roleID' => $roleID, 'patientID' => $superID, 'f_name' => $submit['f_name'], 'l_name' => $submit['l_name'], 'email' => $submit['email'], 'phone' => $submit['phone'], 'password' => $submit['password'], 'DOB' => $submit['DOB'], 'familyCode' => $request->input('familyCode'), 'emergencyContact' => $request->input('emergencyContact'), 'contactRelationship' => $request->input('contactRelationship')]);    
+            $checklistID = "CL" . random_int(100000, 999999);
+            $paymentID = "CL" . random_int(100000, 999999);
+            patient::create(['roleID' => $roleID, 'patientID' => $superID, 'f_name' => $submit['f_name'], 'l_name' => $submit['l_name'], 'email' => $submit['email'], 'phone' => $submit['phone'], 'password' => $submit['password'], 'DOB' => $submit['DOB'], 'familyCode' => $request->input('familyCode'), 'emergencyContact' => $request->input('emergencyContact'), 'contactRelationship' => $request->input('contactRelationship')]);
+            DB::insert('insert into patientchecklist values ("'.$checklistID.'", "'.$superID.'", "DR123456", "CG823342", "'.date('Y-m-d').'", 0, 0, 0, 0, 0, 0, 0)'); 
+            DB::insert('insert into payment values ("'.$paymentID.'", "'.$superID.'", 30, "'.date("Y-m-d").'")');
             return view("/login");
         }
         

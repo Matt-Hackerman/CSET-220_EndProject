@@ -36,7 +36,10 @@ class PaymentAPI extends Controller
         $newPayment = $request->input('newPayment');
         $payment = $totalDue - $newPayment;
         Payment::create(['paymentID' => $paymentID, 'patientID' => $request->input('patientID'), 'payment' => $payment, 'date' => date("Y-m-d")]);
-        return view("welcome");
+        $_SESSION['payment'] = DB::select('select * from payment;');
+        $_SESSION['doctorAppointments'] = DB::select('select * from doctorAppointments;');
+        $_SESSION['prescription'] = DB::select('select * from prescription;');
+        return view("payment");
     }
 
     /**
